@@ -22,3 +22,6 @@ https://blog.naver.com/kon9383/222306198204
      - 방으로서가 아닌 의 각각에 대한 구성
 
           ex) Triple Room애 대해서 (1 Room : 3 SubRoom)으로 구성
+
+방에있는 몹개수 0이면 문열림
+else 모든문 닫힘
