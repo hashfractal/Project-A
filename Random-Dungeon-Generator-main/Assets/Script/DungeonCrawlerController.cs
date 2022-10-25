@@ -99,11 +99,10 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			{
 				FindRoomDistance(startRoomPosition, startRoomPosition);
 
-				// 
 				AddRoomLIst();
 
 				int randRoomIdx = Random.Range(0, validRoomList.Count - 1);
-
+				//while 첫번쨰 루프는 시작방 처리
 				Vector3Int position = new Vector3Int(validRoomList[randRoomIdx].center_Position.x, 0, validRoomList[randRoomIdx].center_Position.z);
 				MakeRoomArray(position);
 			}

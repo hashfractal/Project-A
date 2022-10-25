@@ -1352,10 +1352,10 @@ MonoBehaviour:
   - {x: 1, y: 0, z: -1}
   - {x: -1, y: 0, z: 1}
   - {x: 1, y: 0, z: 1}
-  minRoomCnt: 2
-  maxRoomCnt: 2
+  minRoomCnt: 3
+  maxRoomCnt: 3
   currRoomCnt: 0
-  maxDistance: 1
+  maxDistance: 2
   validRoomCount: 0
   startRoomPosition: {x: 0, y: 0, z: 0}
   bossRoomPosition: {x: 0, y: 0, z: 0}

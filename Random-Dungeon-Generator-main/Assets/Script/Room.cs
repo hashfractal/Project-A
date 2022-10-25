@@ -10,8 +10,8 @@ public class Room : MonoBehaviour
     public int Height;
 
     public string roomName;
-    public string roomType;
-    public string roomId;
+    public string roomType; //방형태의 종류(1개방이면 Single 3개 방이면 Triple)
+    public string roomId;   //룸네임+센터포지션
 
     public Vector3Int center_Position;
     public Vector3Int parent_Position;
