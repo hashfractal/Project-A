@@ -363,17 +363,17 @@ public class SubRoom : MonoBehaviour
     }
     public Room GetTop()
     {
-        if (RoomController.Instance.DoesRoomExist(center_Position.x, center_Position.y, center_Position.z + 1))
+        if (RoomController.Instance.DoesRoomExist(center_Position.x, center_Position.y + 1, center_Position.z))
         {
-            return RoomController.Instance.FindRoom(center_Position.x, center_Position.y, center_Position.z + 1);
+            return RoomController.Instance.FindRoom(center_Position.x, center_Position.y + 1, center_Position.z);
         }
         return null;
     }
     public Room GetBottom()
     {
-        if (RoomController.Instance.DoesRoomExist(center_Position.x, center_Position.y, center_Position.z - 1))
+        if (RoomController.Instance.DoesRoomExist(center_Position.x, center_Position.y - 1, center_Position.z))
         {
-            return RoomController.Instance.FindRoom(center_Position.x, center_Position.y, center_Position.z - 1);
+            return RoomController.Instance.FindRoom(center_Position.x, center_Position.y - 1, center_Position.z);
         }
         return null;
     }

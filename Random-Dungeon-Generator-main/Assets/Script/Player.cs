@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -24,7 +25,7 @@ public class Player : Singleton<Player>
         horizontal = Input.GetAxis("Horizontal");
         vertical = Input.GetAxis("Vertical");
 
-        transform.position += new Vector3(horizontal, 0, vertical) * speed * Time.deltaTime;
+        transform.position += new Vector3(horizontal, vertical, 0) * speed * Time.deltaTime;
     }
 
     void Update()
@@ -43,7 +44,7 @@ public class Player : Singleton<Player>
             Door nextDoor = collision.gameObject.transform.parent.GetComponent<Door>().SideDoor;
 
             // 진행 방향을 파악 후 캐릭터 위치 지정
-            Vector3 currPos = new Vector3(nextDoor.transform.position.x, 0.5f, nextDoor.transform.position.z) + (nextDoor.transform.localRotation * (Vector3.forward * 3));
+            Vector3 currPos = new Vector3(nextDoor.transform.position.x, nextDoor.transform.position.y, 0.5f) + (nextDoor.transform.localRotation * (Vector3.forward * 3));
 
             Player.Instance.transform.position = currPos;
 

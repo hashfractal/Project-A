@@ -87,7 +87,7 @@ public class Room : MonoBehaviour
 
     public Vector3 GetRoomCenter()
     {
-        return new Vector3(center_Position.x, 0, center_Position.z);
+        return new Vector3(center_Position.x, center_Position.y, 0);
     }
 
     private void OnTriggerEnter(Collider collision)

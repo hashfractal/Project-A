@@ -63,21 +63,21 @@ public class RoomController : Singleton<RoomController>
 		
 		//방의 물리적 위치를 설정, 단위 방의 크기가 10*10 일 때, 방의 상대 좌표(posArr상의 좌표)가 5,5라면 절대 좌표(유니티 상의 좌표)는 50,50
 		room.transform.position = new Vector3(
-					(settingRoom.center_Position.x * room.transform.GetComponent<Room>().Width),
-					 settingRoom.center_Position.y,
-					(settingRoom.center_Position.z * room.transform.GetComponent<Room>().Height)
+					settingRoom.center_Position.x * room.transform.GetComponent<Room>().Width,
+					settingRoom.center_Position.y * room.transform.GetComponent<Room>().Height,
+					settingRoom.center_Position.z
 		);
 
 		room.transform.localScale = new Vector3(
-					(room.transform.GetComponent<Room>().Width/10),
-					 1,
-					(room.transform.GetComponent<Room>().Height/10)
+					room.transform.GetComponent<Room>().Width/10,
+					1,
+					room.transform.GetComponent<Room>().Height / 10
 		);
 
 		//settingRoom에 있는 방 정보를 가져와서 유니티 객체인 Room에 적용
 
 		room.transform.GetComponent<Room>().center_Position = settingRoom.center_Position;
-		room.name = globalRoomTitle + "-" + settingRoom.roomName + " " + settingRoom.center_Position.x + ", " + settingRoom.center_Position.z;
+		room.name = globalRoomTitle + "-" + settingRoom.roomName + " " + settingRoom.center_Position.x + ", " + settingRoom.center_Position.y;
 
 		room.transform.GetComponent<Room>().roomName                = settingRoom.roomName;
 		room.transform.GetComponent<Room>().roomType                = settingRoom.roomType;
