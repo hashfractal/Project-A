@@ -294,7 +294,7 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			{
 				if (posArr[j, i].isValidRoom)
 				{
-					Vector3Int tmpArrayPosition = new Vector3Int(i, 0, j);
+					Vector3Int tmpArrayPosition = new Vector3Int(i, j, 0);
 
 					posArr[j, i]                        = SingleRoom(posArr[j, i], posArr[j, i].roomName);
 					posArr[j, i].center_Position        = tmpArrayPosition                  - startRoomPosition;
