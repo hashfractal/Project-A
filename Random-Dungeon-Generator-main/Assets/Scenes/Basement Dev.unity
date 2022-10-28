@@ -1244,8 +1244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89c7970ed4d52e46926c5234b6b8b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRoomCnt: 50
-  maxRoomCnt: 50
+  minRoomCnt: 10
+  maxRoomCnt: 10
   currRoomCnt: 0
   maxDistance: 5
   validRoomCount: 0
