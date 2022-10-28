@@ -1244,24 +1244,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89c7970ed4d52e46926c5234b6b8b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  direction4:
-  - {x: 0, y: 0, z: 1}
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: 0}
-  - {x: 0, y: 0, z: -1}
-  direction8:
-  - {x: 0, y: 0, z: 1}
-  - {x: 0, y: 0, z: -1}
-  - {x: -1, y: 0, z: 0}
-  - {x: 1, y: 0, z: 0}
-  - {x: -1, y: 0, z: -1}
-  - {x: 1, y: 0, z: -1}
-  - {x: -1, y: 0, z: 1}
-  - {x: 1, y: 0, z: 1}
-  minRoomCnt: 3
-  maxRoomCnt: 3
+  minRoomCnt: 50
+  maxRoomCnt: 50
   currRoomCnt: 0
-  maxDistance: 2
+  maxDistance: 5
   validRoomCount: 0
   startRoomPosition: {x: 0, y: 0, z: 0}
   bossRoomPosition: {x: 0, y: 0, z: 0}
@@ -1448,6 +1434,6 @@ MonoBehaviour:
   backSide: 2.5
   cameraAngle: 0
   offsetX: 0
-  offsetY: 10
-  offsetZ: 0
+  offsetY: 0
+  offsetZ: -10
   DelayTime: 3

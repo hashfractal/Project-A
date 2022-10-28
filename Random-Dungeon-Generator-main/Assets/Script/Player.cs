@@ -44,9 +44,9 @@ public class Player : Singleton<Player>
             Door nextDoor = collision.gameObject.transform.parent.GetComponent<Door>().SideDoor;
 
             // 진행 방향을 파악 후 캐릭터 위치 지정
-            Vector3 currPos = new Vector3(nextDoor.transform.position.x, nextDoor.transform.position.y, 0.5f) + (nextDoor.transform.localRotation * (Vector3.forward * 3));
-
-            Player.Instance.transform.position = currPos;
+            //Vector3 currPos = new Vector3(nextDoor.transform.position.x, nextDoor.transform.position.y, -0.5f);
+			Vector3 currPos = new Vector3(nextDoor.transform.position.x, nextDoor.transform.position.y, -0.5f) + (nextDoor.transform.localRotation * (Vector3.forward * 3));
+			Player.Instance.transform.position = currPos;
 
             for (int i = 0; i < RoomController.Instance.loadedRooms.Count; i++)
             {

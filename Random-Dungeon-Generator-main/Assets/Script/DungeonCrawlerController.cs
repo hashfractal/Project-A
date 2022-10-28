@@ -6,14 +6,14 @@ using UnityEngine;
 
 public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 {
-	public List<Vector3Int> direction4                      = new List<Vector3Int>
+	private List<Vector3Int> direction4                      = new List<Vector3Int>
 	{
 		new Vector3Int( 0, 1,  0),       // down
 		new Vector3Int( 1, 0,  0),       // right
 		new Vector3Int(-1, 0,  0),       // left
 		new Vector3Int( 0, -1, 0)        // up
 	};
-	public List<Vector3Int> direction8                      = new List<Vector3Int>
+	private List<Vector3Int> direction8                      = new List<Vector3Int>
 	{   // Down                           // Up
 		new Vector3Int( 0, 1,  0),        new Vector3Int( 0, -1, 0),        
 		// Left                           // Right
@@ -168,7 +168,6 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 		for (int i = 0; i < direction4.Count; i++)
 		{
 			Vector3Int adjustPosition = currentPos + direction4[i];
-
 			if (PossibleArr(adjustPosition) && adjustPosition != prePos)
 			{
 				// 새로운 위치가 활성화가 되었을 경우
@@ -533,7 +532,7 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			for (int j = 0; j < maxDistance * 2; j++)
 			{
 				if (posArr[i, j].isValidRoom)
-					showposarr += "■";
+					showposarr += posArr[i, j].distance;
 				else
 					showposarr += "□";
 			}

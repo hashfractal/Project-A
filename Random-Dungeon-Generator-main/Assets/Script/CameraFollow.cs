@@ -41,7 +41,7 @@ public class CameraFollow : Singleton<CameraFollow>
         Vector3 FixedPos = new Vector3(playerPosition.x + offsetX, playerPosition.y + offsetY, playerPosition.z + offsetZ);
         transform.rotation = Quaternion.Euler(cameraAngle, transform.rotation.y, transform.rotation.z);
         transform.position = Vector3.Lerp(transform.position, FixedPos, Time.deltaTime * DelayTime);
-        
+
     }
 
     public Vector3 GetCameraTargetPosition()
