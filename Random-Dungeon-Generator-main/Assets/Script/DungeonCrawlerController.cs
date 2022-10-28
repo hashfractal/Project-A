@@ -532,9 +532,9 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			for (int j = 0; j < maxDistance * 2; j++)
 			{
 				if (posArr[i, j].isValidRoom)
-					showposarr += posArr[i, j].distance;
+					showposarr += string.Format("{0} ", posArr[i, j].distance);
 				else
-					showposarr += "□";
+					showposarr += "[ ]";
 			}
 			showposarr += "\n";
 		}
