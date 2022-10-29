@@ -34,7 +34,12 @@ public class SubRoom : MonoBehaviour
     public bool isRoomPathBool = false;
     public RoomMinimap minimapRoom;
 
-
+    // 현재 방 이름을 가져옴
+    private RoomManager rm;
+    private void Awake()
+    {
+        rm = FindObjectOfType<RoomManager>();
+    }
     // Start is called before the first frame update
     void Start()
     {
@@ -383,6 +388,9 @@ public class SubRoom : MonoBehaviour
         if (collision.tag == "Player")
         {
             RoomController.Instance.OnPlayerEnterRoom(this.transform.parent.GetComponent<Room>());
+
+            Debug.Log(gameObject.transform.parent.name);
+            rm.Roomname = gameObject.transform.parent.name;
         }
     }
 }

@@ -179,6 +179,53 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 76837695}
   m_CullTransparentMesh: 0
+--- !u!1 &177951357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 177951359}
+  - component: {fileID: 177951358}
+  m_Layer: 0
+  m_Name: RoomManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &177951358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177951357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4598cfc23d1bfa64ebb4c48c2b2034f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Roomname: 
+  Roomname2: 
+  Doors: []
+--- !u!4 &177951359
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 177951357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &187325422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1154,9 +1201,15 @@ MonoBehaviour:
   roomPrefabsName:
   - Single
   - Boss
+  - Elite
+  - Hidden
+  - Start
   roomPrefabsList:
   - {fileID: 2921295173739769028, guid: 0c28deb6b9a3ee74d9aaa34ab5415016, type: 3}
   - {fileID: 6019268754802865015, guid: 9e7941d94807c334b9510f0d1b96808c, type: 3}
+  - {fileID: 2921295173739769028, guid: 3f8d11f926331cc47bb92ac4e7d8ef33, type: 3}
+  - {fileID: 2921295173739769028, guid: 60f380f760499a7418822b349204fe89, type: 3}
+  - {fileID: 2921295173739769028, guid: bf142aa0f359cd3478670bfbd693d60c, type: 3}
 --- !u!850595691 &1775536336
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1263,10 +1316,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89c7970ed4d52e46926c5234b6b8b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRoomCnt: 50
-  maxRoomCnt: 50
+  minRoomCnt: 5
+  maxRoomCnt: 5
   currRoomCnt: 0
-  maxDistance: 5
+  maxDistance: 3
   validRoomCount: 0
   startRoomPosition: {x: 0, y: 0, z: 0}
   bossRoomPosition: {x: 0, y: 0, z: 0}

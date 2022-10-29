@@ -91,7 +91,7 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 		startRoomPosition = new Vector3Int(x, y, 0);                        // 시작방 좌표
 
 		//시작 방 생성
-		posArr[startRoomPosition.y, startRoomPosition.x]            = AddSingleRoom(new RoomInfo(), startRoomPosition, "Single"); //시작방 좌표에 시작방 정보 삽입
+		posArr[startRoomPosition.y, startRoomPosition.x]            = AddSingleRoom(new RoomInfo(), startRoomPosition, "Start"); //시작방 좌표에 시작방 정보 삽입
 		posArr[startRoomPosition.y, startRoomPosition.x].distance   = 0;  //시작방으로부터 시작방까지의 거리는 0
 		currRoomCnt++;
 
@@ -432,10 +432,29 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 						Vector3Int otherPosition        = collectPatten[direction][selectPatten][maxCount - 1];		//끝 점
 
 						currCenterPos = new Vector3((float)(startPosition.x + otherPosition.x) / 2, (float)(startPosition.y + otherPosition.y) / 2, 0);
-						Vector3Int move = start + collectPatten[direction][selectPatten][i];
+						Vector3Int move = start + collectPatten[direction][selectPatten][i];						
 
 						posArr[move.y, move.x].isValidRoom              =  true;
-						posArr[move.y, move.x].roomName                 = "Single";
+
+						int n;
+						string rroomname = "";
+						n = RoomRandomCount();
+                        switch (n)
+                        {
+							case 0:
+								rroomname = "Single";
+								break;
+							case 1:
+								rroomname = "Elite";
+								break;
+							case 2:
+								rroomname = "Hidden";
+								break;
+							default:
+                                break;
+                        }
+
+                        posArr[move.y, move.x].roomName                 = rroomname;
 						posArr[move.y, move.x].center_Position          = start + collectPatten[direction][selectPatten][i];
 						posArr[move.y, move.x].distance                 = -1;
 						printposarr();
@@ -474,6 +493,24 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			}
 		}
 	}
+
+	int RoomRandomCount()
+    {
+		int a = Random.Range(0, 10);
+
+		if(a >= 0 & a <= 7)
+        {
+			return 0;
+        }
+		if (a == 8)
+		{
+			return 1;
+		}
+		else
+			return 2;
+		
+		
+    }
 	public bool RoomCountCheck()
 	{
 		return ((minRoomCnt <= currRoomCnt && currRoomCnt <= maxRoomCnt));
