@@ -11,8 +11,11 @@ public class RoomManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Room room = GameObject.Find(Roomname).GetComponent<Room>();
-        
+        GameObject GO = GameObject.Find(Roomname);
+
+		if (GO == null) return;
+		Room room = GO.GetComponent<Room>();
+
         Roomname2 = room.roomName;
 
         if(Roomname2 == "Single")
