@@ -439,8 +439,8 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 						int n;
 						string rroomname = "";
 						n = RoomRandomCount();
-                        switch (n)
-                        {
+						switch (n)
+						{
 							case 0:
 								rroomname = "Single";
 								break;
@@ -451,10 +451,10 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 								rroomname = "Hidden";
 								break;
 							default:
-                                break;
-                        }
+								break;
+						}
 
-                        posArr[move.y, move.x].roomName                 = rroomname;
+						posArr[move.y, move.x].roomName                 = rroomname;
 						posArr[move.y, move.x].center_Position          = start + collectPatten[direction][selectPatten][i];
 						posArr[move.y, move.x].distance                 = -1;
 						printposarr();
@@ -495,13 +495,13 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 	}
 
 	int RoomRandomCount()
-    {
+	{
 		int a = Random.Range(0, 10);
 
 		if(a >= 0 & a <= 7)
-        {
+		{
 			return 0;
-        }
+		}
 		if (a == 8)
 		{
 			return 1;
@@ -510,7 +510,7 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			return 2;
 		
 		
-    }
+	}
 	public bool RoomCountCheck()
 	{
 		return ((minRoomCnt <= currRoomCnt && currRoomCnt <= maxRoomCnt));
