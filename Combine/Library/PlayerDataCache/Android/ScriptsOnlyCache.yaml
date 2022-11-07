@@ -14,6 +14,7 @@ ScriptsOnlyBuild:
     - TestJoyStick
     - TotemManager
     - Wall
+    - bl_Joystick
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
@@ -47,8 +48,10 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
+    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -167,35 +170,37 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 2888}
     - Class: 114
-      Script: {instanceID: 3512}
+      Script: {instanceID: 3044}
     - Class: 114
-      Script: {instanceID: 4012}
+      Script: {instanceID: 3514}
     - Class: 114
-      Script: {instanceID: 4802}
+      Script: {instanceID: 4014}
     - Class: 114
-      Script: {instanceID: 5140}
+      Script: {instanceID: 4804}
     - Class: 114
-      Script: {instanceID: 5152}
+      Script: {instanceID: 5142}
     - Class: 114
-      Script: {instanceID: 6070}
+      Script: {instanceID: 5154}
     - Class: 114
-      Script: {instanceID: 6486}
+      Script: {instanceID: 6072}
     - Class: 114
-      Script: {instanceID: 6772}
+      Script: {instanceID: 6488}
     - Class: 114
-      Script: {instanceID: 6820}
+      Script: {instanceID: 6774}
     - Class: 114
-      Script: {instanceID: 7156}
+      Script: {instanceID: 6822}
     - Class: 114
-      Script: {instanceID: 7342}
+      Script: {instanceID: 7158}
     - Class: 114
-      Script: {instanceID: 7966}
+      Script: {instanceID: 7344}
     - Class: 114
-      Script: {instanceID: 8792}
+      Script: {instanceID: 7968}
     - Class: 114
-      Script: {instanceID: 9734}
+      Script: {instanceID: 8794}
     - Class: 114
-      Script: {instanceID: 46608}
+      Script: {instanceID: 9736}
+    - Class: 114
+      Script: {instanceID: 29478}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -223,6 +228,8 @@ ScriptsOnlyBuild:
     - Class: 156049354
       Script: {instanceID: 0}
     - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 850595691
       Script: {instanceID: 0}
     - Class: 1839735485
       Script: {instanceID: 0}
@@ -503,6 +510,12 @@ ScriptsOnlyBuild:
     assemblyName: Unity.2D.Tilemap.Extras.dll
     namespaceName: UnityEngine.Tilemaps
     className: RuleOverrideTile
+  - hash:
+      serializedVersion: 2
+      Hash: d44535e6aa5f0aa7969178cf113c9537
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: TestJoyStick
   - hash:
       serializedVersion: 2
       Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
@@ -1477,11 +1490,17 @@ ScriptsOnlyBuild:
     className: UnityOnSliderValueChangedMessageListener
   - hash:
       serializedVersion: 2
-      Hash: d44535e6aa5f0aa7969178cf113c9537
+      Hash: 114ffd3099eab0ffcb9eaac8c09a30cf
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
-    className: TestJoyStick
+    className: bl_Joystick
+  - hash:
+      serializedVersion: 2
+      Hash: d7254c94a7b9f123b107050d754e6d1c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: bl_ControllerExample
   platform: 13
   scenePathNames:
   - Assets/Scenes/TestScene.unity
-  playerPath: G:/XR/Bulid/1_1_JoyStickTest.apk
+  playerPath: G:/XR/Bulid/1_2_JoyStickTest.apk

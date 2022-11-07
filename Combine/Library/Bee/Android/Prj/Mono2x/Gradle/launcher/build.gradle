@@ -31,7 +31,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file('D:/Project/Unity/Dangun_prototype_1031_combine/user.keystore')
+            storeFile file('D:/Project/Unity/Git/Project-A/Combine/user.keystore')
             storePassword 'whgustn99?'
             keyAlias 'johyeonsu'
             keyPassword 'whgustn99?'

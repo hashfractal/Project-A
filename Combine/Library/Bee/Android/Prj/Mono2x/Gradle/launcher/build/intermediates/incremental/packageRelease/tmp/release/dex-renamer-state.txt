@@ -1,4 +1,4 @@
-#Mon Nov 07 16:52:28 KST 2022
-base.0=D\:\\Project\\Unity\\Dangun_prototype_1031_combine\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
+#Mon Nov 07 23:00:47 KST 2022
+base.0=D\:\\Project\\Unity\\Git\\Project-A\\Combine\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
 path.0=classes.dex
 renamed.0=classes.dex
