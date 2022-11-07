@@ -66,7 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     #region 모바일 관련
     // 조이스틱
-    private JoyStick joystick;
+    private bl_Joystick joystick;
     // 조이스틱 벡터 치환
     private float Horizontal;
     private float Vertical;
@@ -99,7 +99,7 @@ public class PlayerMovement : MonoBehaviour
         myAnim = GetComponent<Animator>();
         WA = FindObjectOfType<WeaponAnimScript>();
 
-        joystick = FindObjectOfType<JoyStick>();
+        joystick = FindObjectOfType<bl_Joystick>();
         joystick1 = FindObjectOfType<JoyStick1>();
     }
     private void Start()
