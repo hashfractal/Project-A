@@ -61,6 +61,12 @@ public class RoomController : Singleton<RoomController>
 		//유니티 방 객체 생성
 		//RoomPrefabsSet: 인게임 GameManager 객체로부터 사전에 방정보를 등록하는데 사용된 스크립트 roomPrefabs 딕셔너리에 키: 프리팹 네임, 벨류: 해당되는 맵 프리팹이 있음
 		//				  (Prefabs\BossMap\BossRoom.prefab, Prefabs\NormalMap\NormalRoom.prefab)
+
+		//룸네임 오류 예외처리
+		if (roomPreName == null || roomPreName == "")
+		{
+			return;
+		}
 		GameObject room = Instantiate(RoomPrefabsSet.Instance.roomPrefabs[roomPreName]);
 		
 		//방의 물리적 위치를 설정, 단위 방의 크기가 10*10 일 때, 방의 상대 좌표(posArr상의 좌표)가 5,5라면 절대 좌표(유니티 상의 좌표)는 50,50
