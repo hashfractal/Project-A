@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 using Random = UnityEngine.Random;
 
 public class ITEMMANAGER : MonoBehaviour
@@ -11,7 +12,7 @@ public class ITEMMANAGER : MonoBehaviour
 
 
     //추후에 싱근톤으로 전환
-    public GameObject Slots;
+    //public GameObject Slots;
     public List<Dictionary<string, object>> data;    
 
     // 아이템 상태창
@@ -91,6 +92,10 @@ public class ITEMMANAGER : MonoBehaviour
     //플레이어
     public GameObject Player;
 
+    //아이템 창
+    public GameObject ItemWindow;
+    public TextMeshProUGUI ItemWindowArrow;
+
     #region 인스턴스 필드
     public static ITEMMANAGER Instance
     {        
@@ -108,6 +113,25 @@ public class ITEMMANAGER : MonoBehaviour
         if (null == instance)
         {
             instance = this;
+        }
+    }
+    #endregion
+
+    #region 아이템 창 버튼 클릭하면 나오고 들어가기
+    public void ItemWindowAnim()
+    {
+        Animator anim = ItemWindow.GetComponent<Animator>();
+        RectTransform rect = ItemWindow.GetComponent<RectTransform>();
+
+        if(rect.anchoredPosition.x < 0)
+        {
+            rect.anchoredPosition = Vector3.zero;
+            ItemWindowArrow.text = "<";
+        }
+        else
+        {
+            rect.anchoredPosition = new Vector3(-770, 0, 0);
+            ItemWindowArrow.text = ">";
         }
     }
     #endregion

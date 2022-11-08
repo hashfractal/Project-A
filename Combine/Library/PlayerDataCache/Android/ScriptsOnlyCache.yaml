@@ -1,6 +1,7 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - Boss1TargetImage
     - Door
     - Doors
     - EliteMonster
@@ -9,6 +10,8 @@ ScriptsOnlyBuild:
     - MapScript
     - Room
     - RoomMinimap
+    - Stage1BossAI
+    - StartManager
     - SubRoom
     - Tag
     - TestJoyStick
@@ -45,13 +48,12 @@ ScriptsOnlyBuild:
     - TMPro.TMP_Settings
     - TMPro.TMP_SpriteAsset
     - TMPro.TMP_StyleSheet
+    - TMPro.TextMeshProUGUI
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -81,6 +83,7 @@ ScriptsOnlyBuild:
     - TMPro.TMP_SpriteCharacter
     - TMPro.TMP_SpriteGlyph
     - TMPro.TMP_Style
+    - TMPro.VertexGradient
     UnityEngine.CoreModule:
     - UnityEngine.Events.ArgumentCache
     - UnityEngine.Events.PersistentCallGroup
@@ -98,9 +101,53 @@ ScriptsOnlyBuild:
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
     - UnityEngine.UI.SpriteState
-  methodsToPreserve: []
+  methodsToPreserve:
+  - assembly: Assembly-CSharp
+    fullTypeName: StartManager
+    methodName: OnStart
   sceneClasses:
     Assets/Scenes/TestScene.unity:
+    - Class: 1
+      Script: {instanceID: 0}
+    - Class: 4
+      Script: {instanceID: 0}
+    - Class: 20
+      Script: {instanceID: 0}
+    - Class: 28
+      Script: {instanceID: 0}
+    - Class: 81
+      Script: {instanceID: 0}
+    - Class: 104
+      Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 1570}
+    - Class: 114
+      Script: {instanceID: 1572}
+    - Class: 114
+      Script: {instanceID: 1574}
+    - Class: 114
+      Script: {instanceID: 2100}
+    - Class: 114
+      Script: {instanceID: 2892}
+    - Class: 114
+      Script: {instanceID: 3050}
+    - Class: 114
+      Script: {instanceID: 6830}
+    - Class: 115
+      Script: {instanceID: 0}
+    - Class: 157
+      Script: {instanceID: 0}
+    - Class: 196
+      Script: {instanceID: 0}
+    - Class: 213
+      Script: {instanceID: 0}
+    - Class: 222
+      Script: {instanceID: 0}
+    - Class: 223
+      Script: {instanceID: 0}
+    - Class: 224
+      Script: {instanceID: 0}
+    Assets/Scenes/testStartScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
@@ -162,45 +209,47 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1998}
     - Class: 114
-      Script: {instanceID: 2328}
+      Script: {instanceID: 2100}
     - Class: 114
-      Script: {instanceID: 2368}
+      Script: {instanceID: 2330}
     - Class: 114
-      Script: {instanceID: 2526}
+      Script: {instanceID: 2370}
     - Class: 114
-      Script: {instanceID: 2888}
+      Script: {instanceID: 2528}
     - Class: 114
-      Script: {instanceID: 3044}
+      Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 3514}
+      Script: {instanceID: 3520}
     - Class: 114
-      Script: {instanceID: 4014}
+      Script: {instanceID: 4022}
     - Class: 114
-      Script: {instanceID: 4804}
+      Script: {instanceID: 4812}
     - Class: 114
-      Script: {instanceID: 5142}
+      Script: {instanceID: 5150}
     - Class: 114
-      Script: {instanceID: 5154}
+      Script: {instanceID: 5162}
     - Class: 114
-      Script: {instanceID: 6072}
+      Script: {instanceID: 5238}
     - Class: 114
-      Script: {instanceID: 6488}
+      Script: {instanceID: 6080}
     - Class: 114
-      Script: {instanceID: 6774}
+      Script: {instanceID: 6496}
     - Class: 114
-      Script: {instanceID: 6822}
+      Script: {instanceID: 6782}
     - Class: 114
-      Script: {instanceID: 7158}
+      Script: {instanceID: 6830}
     - Class: 114
-      Script: {instanceID: 7344}
+      Script: {instanceID: 7034}
     - Class: 114
-      Script: {instanceID: 7968}
+      Script: {instanceID: 7166}
     - Class: 114
-      Script: {instanceID: 8794}
+      Script: {instanceID: 7352}
     - Class: 114
-      Script: {instanceID: 9736}
+      Script: {instanceID: 7976}
     - Class: 114
-      Script: {instanceID: 29478}
+      Script: {instanceID: 8802}
+    - Class: 114
+      Script: {instanceID: 9744}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -342,6 +391,12 @@ ScriptsOnlyBuild:
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: EnemyAI
+  - hash:
+      serializedVersion: 2
+      Hash: 114ffd3099eab0ffcb9eaac8c09a30cf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: bl_Joystick
   - hash:
       serializedVersion: 2
       Hash: 2890c468cf196dca883ea02bde96343e
@@ -500,6 +555,12 @@ ScriptsOnlyBuild:
     className: UnityMessageListener
   - hash:
       serializedVersion: 2
+      Hash: d7254c94a7b9f123b107050d754e6d1c
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: bl_ControllerExample
+  - hash:
+      serializedVersion: 2
       Hash: 64782a7479090a5bbaf48fd270b27aae
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
@@ -642,6 +703,12 @@ ScriptsOnlyBuild:
     assemblyName: UnityEngine.UI.dll
     namespaceName: UnityEngine.UI
     className: ContentSizeFitter
+  - hash:
+      serializedVersion: 2
+      Hash: 114ffd3099eab0ffcb9eaac8c09a30cf
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: bl_Joystick1
   - hash:
       serializedVersion: 2
       Hash: 2574ac7d50617d23cdefe4ad22f5e1ad
@@ -1488,19 +1555,8 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
-  - hash:
-      serializedVersion: 2
-      Hash: 114ffd3099eab0ffcb9eaac8c09a30cf
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: bl_Joystick
-  - hash:
-      serializedVersion: 2
-      Hash: d7254c94a7b9f123b107050d754e6d1c
-    assemblyName: Assembly-CSharp.dll
-    namespaceName: 
-    className: bl_ControllerExample
   platform: 13
   scenePathNames:
+  - Assets/Scenes/testStartScene.unity
   - Assets/Scenes/TestScene.unity
-  playerPath: G:/XR/Bulid/1_2_JoyStickTest.apk
+  playerPath: D:/Project/Unity/Build/1_3_JoyStick Sujeong.apk

@@ -111,7 +111,7 @@ public class GameManager : MonoBehaviour
         HP = MaxHP;
         checkSlot = true;
         //¼Óµµ ¹Ù²ñ
-        PlayerMoveSpeed = 100f;
+        PlayerMoveSpeed = 500f;
         PlayerCoolTime = 1f;
         PlayerBulletSpeed = 5f;
         PlayerPower = 10;

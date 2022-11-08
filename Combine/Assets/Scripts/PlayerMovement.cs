@@ -72,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
     private float Vertical;
 
     // 에임 조이스틱
-    private JoyStick1 joystick1;
+    private bl_Joystick1 joystick1;
     // 에임 조이스틱 벡터 치환
     private float Horizontal1;
     private float Vertical1;
@@ -84,8 +84,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject Aim;
     public GameObject meleeButton;
 
-    // 플레이어가 아이템 가까이 가면 버튼 속 텍스트 변경
-    //public TextMeshProUGUI meleeButtonText;
+    // 아이템 가까이 가면 아이템으로 텍스트 변환
+    public TextMeshProUGUI AttackButtonText;
     #endregion
 
     private void Awake()
@@ -100,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         WA = FindObjectOfType<WeaponAnimScript>();
 
         joystick = FindObjectOfType<bl_Joystick>();
-        joystick1 = FindObjectOfType<JoyStick1>();
+        joystick1 = FindObjectOfType<bl_Joystick1>();
     }
     private void Start()
     {
@@ -117,6 +117,8 @@ public class PlayerMovement : MonoBehaviour
 
         //쿨타임 초기화
         curTime = 0;
+
+        Aim.SetActive(false);
     }
 
     private void Update()
@@ -412,8 +414,14 @@ public class PlayerMovement : MonoBehaviour
     #region 이동 관련 필드
     private void Move()
     {
-        transHorizontalandVertical();
-        playerRb.velocity = new Vector2(Mathf.Round(joystick.Horizontal), Mathf.Round(joystick.Vertical)) * GameManager.Instance.PlayerMoveSpeed * Time.deltaTime;
+        //transHorizontalandVertical();
+
+        Vector3 transVector = new Vector3(joystick.Horizontal, joystick.Vertical, 0);
+
+        transVector.Normalize();
+
+        //playerRb.velocity = new Vector2(Mathf.Round(joystick.Horizontal), Mathf.Round(joystick.Vertical)) * GameManager.Instance.PlayerMoveSpeed * Time.deltaTime;
+        playerRb.velocity = transVector * GameManager.Instance.PlayerMoveSpeed * Time.deltaTime;
         myAnim.SetFloat("MoveX", playerRb.velocity.x);
         myAnim.SetFloat("MoveY", playerRb.velocity.y);
 

@@ -361,6 +361,7 @@
 "Assets/Resources/Script/SubRoom.cs"
 "Assets/Resources/Script/Wall.cs"
 "Assets/Resources/UJoystick/Content/Script/Core/bl_Joystick.cs"
+"Assets/Resources/UJoystick/Content/Script/Core/bl_Joystick1.cs"
 "Assets/Resources/UJoystick/Content/Script/Internal/bl_JoystickUtils.cs"
 "Assets/Resources/UJoystick/Example/Scrips/bl_ControllerExample.cs"
 "Assets/Scenes/SceneScript/testStartButton.cs"
