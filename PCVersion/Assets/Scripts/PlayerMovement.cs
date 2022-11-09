@@ -630,6 +630,10 @@ public class PlayerMovement : MonoBehaviour
         {
             GameManager.Instance.HP -= 15;
         }
+        if (collision.gameObject.tag == "EliteMonster")
+        {
+            GameManager.Instance.HP -= 1;
+        }
     }
 
     //적의 '공격'에 부딪혔을때

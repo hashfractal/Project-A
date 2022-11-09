@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 383166081162599817}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EweaponPosParent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -45,7 +45,8 @@ GameObject:
   - component: {fileID: 4079435394111097899}
   - component: {fileID: 4019777683190262650}
   - component: {fileID: 2366985415845294858}
-  m_Layer: 0
+  - component: {fileID: 1629610315592956466}
+  m_Layer: 8
   m_Name: W_3
   m_TagString: EliteMonster
   m_Icon: {fileID: 0}
@@ -178,11 +179,32 @@ MonoBehaviour:
   moveSpeed: 0
   atkRange: 0
   fieldOfVision: 0
-  EliteMonsterWeaponPrefab: []
+  EliteMonsterWeaponPrefab:
+  - {fileID: 4043411732726009116, guid: 578d5a70071ddf342a0074216e535990, type: 3}
   EweaponAttackPosParent: {fileID: 2721309621046257139}
   EweaponAttackPos: {fileID: 5199456254647625249}
   targetPosition: {fileID: 0}
   EliteSR: {fileID: 1109810173037328020}
+--- !u!95 &1629610315592956466
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4148562162793532773}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &5199456254647625249
 GameObject:
   m_ObjectHideFlags: 0
@@ -194,7 +216,7 @@ GameObject:
   - component: {fileID: 7248096811179417643}
   - component: {fileID: 5094559927511199962}
   - component: {fileID: 6463276765747618844}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EweaponPos
   m_TagString: Untagged
   m_Icon: {fileID: 0}

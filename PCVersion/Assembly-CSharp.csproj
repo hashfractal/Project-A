@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{B0AC9B4E-634A-0D53-23FD-7A8A0D4F3888}</ProjectGuid>
+    <ProjectGuid>{72F8ACF5-0147-2421-9029-19BAC2B707B3}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -88,7 +88,6 @@
     <Compile Include="Assets\DownAssets\Epic Toon FX\Demo\Scripts\VFX Library\PEButtonScript.cs" />
     <Compile Include="Assets\Scripts\WeaponAnimScript.cs" />
     <Compile Include="Assets\DownAssets\Epic Toon FX\Demo\Scripts\ETFXLoopScript.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EliteMonsterAI.cs" />
     <Compile Include="Assets\Resources\Script\Hyeonsu\RoomManager.cs" />
     <Compile Include="Assets\Scripts\Enemy\EnemyWeaponAnim.cs" />
     <Compile Include="Assets\Scripts\Skills\E\E_1.cs" />
@@ -112,7 +111,8 @@
     <Compile Include="Assets\Scripts\PlayerMovement.cs" />
     <Compile Include="Assets\Resources\Script\Player.cs" />
     <Compile Include="Assets\DownAssets\Epic Toon FX\Demo\Scripts\ETFXProjectileScript.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EliteMonster.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EliteMonster\EliteMonster.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EliteMonster\W3AttackScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

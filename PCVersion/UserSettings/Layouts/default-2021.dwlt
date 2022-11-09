@@ -19,7 +19,7 @@ MonoBehaviour:
     width: 2560
     height: 1357
   m_ShowMode: 4
-  m_Title: Inspector
+  m_Title: Project
   m_RootView: {fileID: 4}
   m_MinSize: {x: 875, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
@@ -74,7 +74,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 200
+  controlID: 199
 --- !u!114 &4
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -172,7 +172,7 @@ MonoBehaviour:
   m_MinSize: {x: 400, y: 200}
   m_MaxSize: {x: 32384, y: 16192}
   vertical: 0
-  controlID: 191
+  controlID: 172
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -226,7 +226,7 @@ MonoBehaviour:
   m_MinSize: {x: 100, y: 200}
   m_MaxSize: {x: 8096, y: 16192}
   vertical: 1
-  controlID: 78
+  controlID: 79
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -301,13 +301,13 @@ MonoBehaviour:
     height: 1307
   m_MinSize: {x: 232, y: 271}
   m_MaxSize: {x: 10002, y: 10021}
-  m_ActualView: {fileID: 15}
+  m_ActualView: {fileID: 24}
   m_Panes:
   - {fileID: 24}
   - {fileID: 25}
   - {fileID: 15}
-  m_Selected: 2
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 2
 --- !u!114 &13
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -365,7 +365,7 @@ MonoBehaviour:
     m_SaveData: []
   m_LockTracker:
     m_IsLocked: 0
-  m_LastSelectedObjectID: -1638
+  m_LastSelectedObjectID: 27436
 --- !u!114 &15
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -407,21 +407,21 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Scripts/Enemy
+    - Assets/Prefabs/EliteMonster/Water3AttackAnim_test
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 95
   m_LastFolders:
-  - Assets/Scripts/Enemy
+  - Assets/Prefabs/EliteMonster/Water3AttackAnim_test
   m_LastFoldersGridSize: 95
-  m_LastProjectPath: D:\Project\UNITY\Dangun_prototype_1031_combine
+  m_LastProjectPath: D:\UnityGitHub\Project-A\PCVersion
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 22730000
-    m_LastClickedID: 29474
+    m_SelectedIDs: 68730000
+    m_LastClickedID: 29544
     m_ExpandedIDs: 000000000a7300000c7300000e73000010730000127300001473000016730000187300001a7300001c7300001e73000020730000227300002473000026730000287300002a7300002c7300002e73000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
@@ -475,24 +475,24 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 
-    m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_SelectedInstanceIDs: e0a5ffff
+    m_LastClickedInstanceID: -23072
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: be6d0000c0650000da6d0000d26d0000ba6d0000c66d0000ce6d0000d66d0000c26d0000ca6d0000b46d0000a46d00008ece00009068000092680000a8680000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
-      m_Name: 
-      m_OriginalName: 
+      m_Name: Water3AttackAnim_test
+      m_OriginalName: Water3AttackAnim_test
       m_EditFieldRect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 0
         height: 0
-      m_UserData: 0
+      m_UserData: 29544
       m_IsWaitingForDelay: 0
       m_IsRenaming: 0
-      m_OriginalEventType: 11
+      m_OriginalEventType: 0
       m_IsRenamingFilename: 1
       m_ClientGUIView: {fileID: 12}
     m_CreateAssetUtility:
@@ -540,7 +540,7 @@ MonoBehaviour:
     m_CachedPref: 198
     m_ControlHash: 1412526313
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1638
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0
@@ -886,9 +886,9 @@ MonoBehaviour:
   m_PlayAudio: 0
   m_AudioPlay: 0
   m_Position:
-    m_Target: {x: -13.843928, y: 2.2875185, z: 0.026369518}
+    m_Target: {x: -24.089626, y: 4.180226, z: -0.08769709}
     speed: 2
-    m_Value: {x: -13.843928, y: 2.2875185, z: 0.026369518}
+    m_Value: {x: -24.089626, y: 4.180226, z: -0.08769709}
   m_RenderMode: 0
   m_CameraMode:
     drawMode: 0
@@ -939,9 +939,9 @@ MonoBehaviour:
     speed: 2
     m_Value: {x: 0, y: 0, z: 0, w: 1}
   m_Size:
-    m_Target: 5.5786667
+    m_Target: 12.581595
     speed: 2
-    m_Value: 5.5786667
+    m_Value: 12.581595
   m_Ortho:
     m_Target: 1
     speed: 2
@@ -1444,11 +1444,11 @@ MonoBehaviour:
     - e00: 1
       e01: 0
       e02: 0
-      e03: 48
+      e03: -31
       e10: 0
       e11: 1
       e12: 0
-      e13: 139.5
+      e13: 135.5
       e20: 0
       e21: 0
       e22: 1
@@ -1474,11 +1474,9 @@ MonoBehaviour:
       e32: 0
       e33: 1
   m_PreviewAnimator: {fileID: 0}
-  m_AnimatorController: {fileID: 9100000, guid: b481d46aec346e94b8021f35e6cd6dfe, type: 2}
+  m_AnimatorController: {fileID: 9100000, guid: fb0cfcc80cae4834495b75ea86f7e2c3, type: 2}
   m_BreadCrumbs:
-  - m_Target: {fileID: 2297260551568214919, guid: b481d46aec346e94b8021f35e6cd6dfe, type: 2}
-    m_ScrollPosition: {x: 0, y: 0}
-  - m_Target: {fileID: -234740892526448795, guid: b481d46aec346e94b8021f35e6cd6dfe, type: 2}
+  - m_Target: {fileID: 771554656628773020, guid: fb0cfcc80cae4834495b75ea86f7e2c3, type: 2}
     m_ScrollPosition: {x: 0, y: 0}
   stateMachineGraph: {fileID: 0}
   stateMachineGraphGUI: {fileID: 0}
@@ -1552,7 +1550,7 @@ MonoBehaviour:
       scrollPos: {x: 0, y: 0}
       m_SelectedIDs: 
       m_LastClickedID: 0
-      m_ExpandedIDs: 2afbffff
+      m_ExpandedIDs: 74f9ffff80f9ffff8cf9ffff9af9ffff2afbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -1659,10 +1657,10 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: 1490
-    y: 81
-    width: 490
-    height: 1270
+    x: 1491
+    y: 73
+    width: 493
+    height: 1286
   m_ViewDataDictionary: {fileID: 0}
   m_OverlayCanvas:
     m_LastAppliedPresetName: Default
@@ -1680,22 +1678,22 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Annimation/Enemy
+    - Assets/Scripts/Enemy/EliteMonster
     m_Globs: []
     m_OriginalText: 
   m_ViewMode: 1
   m_StartGridSize: 96
   m_LastFolders:
-  - Assets/Annimation/Enemy
+  - Assets/Scripts/Enemy/EliteMonster
   m_LastFoldersGridSize: 96
-  m_LastProjectPath: D:\Project\UNITY\Dangun_prototype_1031_combine
+  m_LastProjectPath: D:\UnityGitHub\Project-A\PCVersion
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: e4710000
-    m_LastClickedID: 29156
-    m_ExpandedIDs: 000000000a7300000c7300000e73000010730000127300001473000016730000187300001a7300001c7300001e73000020730000227300002473000026730000287300002a7300002c7300002e730000
+    m_SelectedIDs: eede0000
+    m_LastClickedID: 57070
+    m_ExpandedIDs: 000000000a7300000c7300000e73000010730000127300001473000016730000187300001e73000020730000227300002473000026730000287300002a7300002c7300002e73000000ca9a3b
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -1748,8 +1746,8 @@ MonoBehaviour:
       m_Icon: {fileID: 0}
       m_ResourceFile: 
   m_ListAreaState:
-    m_SelectedInstanceIDs: 606f0000
-    m_LastClickedInstanceID: 28512
+    m_SelectedInstanceIDs: 
+    m_LastClickedInstanceID: 0
     m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: 5c650000106700002c680000a4650000b6600000187c0000569900002e6300002a630000c08c0000be6100009aee0000a0ee00004e64000038640000446900007c69000058690000e6710000dc650000fe710000f2650000a6a50000d674000040b50000deb00000e8b00000c46500009464000036b00000d0650000089200004275000006760000f0650000b4640000e0650000269f0000c8720000046600008c6500007a6500009e650000a46d0000726500000e920000b8b50000c0b50000b4b50000bcb5000070a0000056a10000
     m_RenameOverlay:
@@ -1813,7 +1811,7 @@ MonoBehaviour:
     m_CachedPref: -160
     m_ControlHash: -371814159
     m_PrefName: Preview_InspectorPreview
-  m_LastInspectedObjectInstanceID: -1638
+  m_LastInspectedObjectInstanceID: -1
   m_LastVerticalScrollValue: 0
   m_GlobalObjectId: 
   m_InspectorMode: 0

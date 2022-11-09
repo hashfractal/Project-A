@@ -13,13 +13,13 @@ GameObject:
   - component: {fileID: 5510499370362344536}
   - component: {fileID: 6304017611915119635}
   - component: {fileID: -1776188445100300771}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: E_3
   m_TagString: EliteMonster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2863183201138013706
 Transform:
   m_ObjectHideFlags: 0
@@ -139,6 +139,7 @@ MonoBehaviour:
   EliteEnemyHp: 0
   nowHp: 0
   atkDmg: 0
+  meleeDmg: 0
   atkDelay: 0
   atkSpeed: 0
   moveSpeed: 0
