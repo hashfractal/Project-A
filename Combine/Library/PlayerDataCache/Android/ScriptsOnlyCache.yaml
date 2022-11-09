@@ -4,43 +4,46 @@ ScriptsOnlyBuild:
     - Boss1TargetImage
     - Door
     - Doors
+    - DungeonCrawlerController
+    - E_1
     - EliteMonster
     - Enemy
     - EnemyAI
+    - F_1
+    - FadeInOut
+    - GameManager
+    - ITEMMANAGER
+    - MainCameraController
     - MapScript
+    - PlayerMovement
+    - PlayerSkillManager
     - Room
+    - RoomController
+    - RoomManager
     - RoomMinimap
+    - RoomPrefabsSet
     - Stage1BossAI
     - StartManager
     - SubRoom
     - Tag
-    - TestJoyStick
     - TotemManager
+    - W_1
     - Wall
+    - WeaponAnimScript
     - bl_Joystick
+    - bl_Joystick1
     Unity.2D.Animation.Editor.dll:
     - UnityEditor.U2D.Animation.BoneGizmo
     Unity.2D.IK.Editor.dll:
     - UnityEditor.U2D.IK.IKEditorManager
-    - UnityEditor.U2D.IK.IKGizmos
     Unity.2D.Tilemap.Editor.dll:
-    - UnityEditor.Tilemaps.GridBrush
-    - UnityEditor.Tilemaps.GridPaintPaletteClipboard
-    - UnityEditor.Tilemaps.GridPaintPaletteWindow
     - UnityEditor.Tilemaps.GridPaintingState
     - UnityEditor.Tilemaps.GridPaletteBrushes
     - UnityEditor.Tilemaps.GridPalettes
-    - UnityEditor.Tilemaps.PaintableSceneViewGrid
     - UnityEditor.Tilemaps.SceneViewGridManager
     - UnityEditor.Tilemaps.SceneViewOpenTilePaletteHelper
     - UnityEditor.Tilemaps.TileDragAndDropManager
-    - UnityEditor.Tilemaps.TilemapEditorToolPreferences
     - UnityEditor.Tilemaps.TilemapPrefabStageHelper
-    Unity.2D.Tilemap.Extras.Editor.dll:
-    - UnityEditor.Tilemaps.GameObjectBrush
-    - UnityEditor.Tilemaps.GroupBrush
-    - UnityEditor.Tilemaps.LineBrush
-    - UnityEditor.Tilemaps.RandomBrush
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -61,12 +64,14 @@ ScriptsOnlyBuild:
     - UnityEditor.TestTools.TestRunner.TestRun.TestJobDataHolder
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
+    - UnityEngine.EventSystems.EventTrigger
     - UnityEngine.EventSystems.StandaloneInputModule
     - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
     - UnityEngine.UI.RawImage
+    - UnityEngine.UI.Scrollbar
     - UnityEngine.UI.Text
   serializedClasses:
     Unity.TextMeshPro:
@@ -94,31 +99,89 @@ ScriptsOnlyBuild:
     - UnityEngine.TextCore.GlyphMetrics
     - UnityEngine.TextCore.GlyphRect
     UnityEngine.UI:
+    - UnityEngine.EventSystems.EventTrigger/Entry
+    - UnityEngine.EventSystems.EventTrigger/TriggerEvent
     - UnityEngine.UI.AnimationTriggers
     - UnityEngine.UI.Button/ButtonClickedEvent
     - UnityEngine.UI.ColorBlock
     - UnityEngine.UI.FontData
     - UnityEngine.UI.MaskableGraphic/CullStateChangedEvent
     - UnityEngine.UI.Navigation
+    - UnityEngine.UI.Scrollbar/ScrollEvent
     - UnityEngine.UI.SpriteState
   methodsToPreserve:
   - assembly: Assembly-CSharp
     fullTypeName: StartManager
     methodName: OnStart
+  - assembly: Assembly-CSharp
+    fullTypeName: StartManager
+    methodName: OptionClose
+  - assembly: Assembly-CSharp
+    fullTypeName: StartManager
+    methodName: GameClose
+  - assembly: Assembly-CSharp
+    fullTypeName: StartManager
+    methodName: OptionClick
+  - assembly: Assembly-CSharp
+    fullTypeName: ITEMMANAGER
+    methodName: ItemWindowAnim
+  - assembly: Assembly-CSharp
+    fullTypeName: RoomManager
+    methodName: GoMain
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerMovement
+    methodName: MobileApplyItem
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerMovement
+    methodName: MobileDodge
+  - assembly: Assembly-CSharp
+    fullTypeName: bl_Joystick1
+    methodName: PointerDown
+  - assembly: Assembly-CSharp
+    fullTypeName: bl_Joystick1
+    methodName: PointerUp
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerMovement
+    methodName: MobileChangeWeapon
+  - assembly: Assembly-CSharp
+    fullTypeName: PlayerMovement
+    methodName: MobileMeleeAttack
   sceneClasses:
-    Assets/Scenes/TestScene.unity:
+    Assets/Scenes/SampleScene.unity:
     - Class: 1
       Script: {instanceID: 0}
     - Class: 4
       Script: {instanceID: 0}
     - Class: 20
       Script: {instanceID: 0}
+    - Class: 21
+      Script: {instanceID: 0}
     - Class: 28
+      Script: {instanceID: 0}
+    - Class: 48
+      Script: {instanceID: 0}
+    - Class: 50
+      Script: {instanceID: 0}
+    - Class: 58
+      Script: {instanceID: 0}
+    - Class: 60
+      Script: {instanceID: 0}
+    - Class: 61
+      Script: {instanceID: 0}
+    - Class: 70
+      Script: {instanceID: 0}
+    - Class: 74
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 91
+      Script: {instanceID: 0}
+    - Class: 95
+      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
+    - Class: 114
+      Script: {instanceID: 682}
     - Class: 114
       Script: {instanceID: 1570}
     - Class: 114
@@ -126,18 +189,84 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 1574}
     - Class: 114
+      Script: {instanceID: 1576}
+    - Class: 114
+      Script: {instanceID: 1634}
+    - Class: 114
+      Script: {instanceID: 1768}
+    - Class: 114
+      Script: {instanceID: 1998}
+    - Class: 114
       Script: {instanceID: 2100}
+    - Class: 114
+      Script: {instanceID: 2330}
+    - Class: 114
+      Script: {instanceID: 2512}
+    - Class: 114
+      Script: {instanceID: 2662}
     - Class: 114
       Script: {instanceID: 2892}
     - Class: 114
-      Script: {instanceID: 3050}
+      Script: {instanceID: 3032}
+    - Class: 114
+      Script: {instanceID: 3520}
+    - Class: 114
+      Script: {instanceID: 3558}
+    - Class: 114
+      Script: {instanceID: 3760}
+    - Class: 114
+      Script: {instanceID: 4942}
+    - Class: 114
+      Script: {instanceID: 5162}
+    - Class: 114
+      Script: {instanceID: 5594}
+    - Class: 114
+      Script: {instanceID: 5824}
+    - Class: 114
+      Script: {instanceID: 6080}
+    - Class: 114
+      Script: {instanceID: 6324}
+    - Class: 114
+      Script: {instanceID: 6496}
+    - Class: 114
+      Script: {instanceID: 6688}
+    - Class: 114
+      Script: {instanceID: 6782}
     - Class: 114
       Script: {instanceID: 6830}
+    - Class: 114
+      Script: {instanceID: 7034}
+    - Class: 114
+      Script: {instanceID: 7166}
+    - Class: 114
+      Script: {instanceID: 7342}
+    - Class: 114
+      Script: {instanceID: 7352}
+    - Class: 114
+      Script: {instanceID: 7836}
+    - Class: 114
+      Script: {instanceID: 7854}
+    - Class: 114
+      Script: {instanceID: 7976}
+    - Class: 114
+      Script: {instanceID: 8220}
+    - Class: 114
+      Script: {instanceID: 8392}
+    - Class: 114
+      Script: {instanceID: 8446}
+    - Class: 114
+      Script: {instanceID: 8866}
+    - Class: 114
+      Script: {instanceID: 9744}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 157
       Script: {instanceID: 0}
     - Class: 196
+      Script: {instanceID: 0}
+    - Class: 212
       Script: {instanceID: 0}
     - Class: 213
       Script: {instanceID: 0}
@@ -146,6 +275,14 @@ ScriptsOnlyBuild:
     - Class: 223
       Script: {instanceID: 0}
     - Class: 224
+      Script: {instanceID: 0}
+    - Class: 19719996
+      Script: {instanceID: 0}
+    - Class: 156049354
+      Script: {instanceID: 0}
+    - Class: 483693784
+      Script: {instanceID: 0}
+    - Class: 1839735485
       Script: {instanceID: 0}
     Assets/Scenes/testStartScene.unity:
     - Class: 1
@@ -244,6 +381,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 7166}
     - Class: 114
       Script: {instanceID: 7352}
+    - Class: 114
+      Script: {instanceID: 7472}
     - Class: 114
       Script: {instanceID: 7976}
     - Class: 114
@@ -705,7 +844,7 @@ ScriptsOnlyBuild:
     className: ContentSizeFitter
   - hash:
       serializedVersion: 2
-      Hash: 114ffd3099eab0ffcb9eaac8c09a30cf
+      Hash: cca2b8b87632dfea7ec69a2a6826172d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: bl_Joystick1
@@ -915,7 +1054,7 @@ ScriptsOnlyBuild:
     className: AnimatedTile
   - hash:
       serializedVersion: 2
-      Hash: d990cc96ea8d0e446e2a6bc1c5d8e9f6
+      Hash: e39fbda94e7766ae14e579955a9f1c95
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: StartManager
@@ -1377,7 +1516,7 @@ ScriptsOnlyBuild:
     className: UnityOnSubmitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 82962726f472140d3452dc31c021648c
+      Hash: d42c644618371ad1b1810b231401b64a
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: ITEMMANAGER
@@ -1443,7 +1582,7 @@ ScriptsOnlyBuild:
     className: ScrollRect
   - hash:
       serializedVersion: 2
-      Hash: d3ac67f2272a0793eafb838415c90f56
+      Hash: f1616b9ecdef83f07669db05cbddf0ff
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: PlayerMovement
@@ -1558,5 +1697,5 @@ ScriptsOnlyBuild:
   platform: 13
   scenePathNames:
   - Assets/Scenes/testStartScene.unity
-  - Assets/Scenes/TestScene.unity
-  playerPath: D:/Project/Unity/Build/1_3_JoyStick Sujeong.apk
+  - Assets/Scenes/SampleScene.unity
+  playerPath: D:/Project/Unity/Build/1_4_StartSceneEnd.apk

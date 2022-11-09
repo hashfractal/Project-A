@@ -43,6 +43,16 @@ public class ITEMMANAGER : MonoBehaviour
     public Image TotemImage;
     public Image SkillImage;
 
+    //아이템 인벤토리 텍스트 ++ 추가된거임
+    public TextMeshProUGUI Weapon1TabNameText;
+    public TextMeshProUGUI Weapon2TabNameText;
+    public TextMeshProUGUI ArmorTabNameText;
+
+    //아이템 인벤토리에서 아이템 능력치를 보여주는 텍스트 ++ 추가된거임
+    public TextMeshProUGUI Weapon1TabStatText;
+    public TextMeshProUGUI Weapon2TabStatText;
+    public TextMeshProUGUI ArmorTabStatText;
+
     //원래아이템을 교체하기위한 Queue
     public Queue<GameObject> ArmorOriginalItem;
     public Queue<GameObject> Weapon1originalItem;
@@ -122,15 +132,18 @@ public class ITEMMANAGER : MonoBehaviour
     {
         Animator anim = ItemWindow.GetComponent<Animator>();
         RectTransform rect = ItemWindow.GetComponent<RectTransform>();
+        Canvas cv = rect.transform.GetComponentInParent<Canvas>();
 
         if(rect.anchoredPosition.x < 0)
-        {
+        {         
             rect.anchoredPosition = Vector3.zero;
+            cv.sortingOrder = 100;
             ItemWindowArrow.text = "<";
         }
         else
         {
             rect.anchoredPosition = new Vector3(-770, 0, 0);
+            cv.sortingOrder = 0;
             ItemWindowArrow.text = ">";
         }
     }
@@ -294,6 +307,9 @@ public class ITEMMANAGER : MonoBehaviour
             if (itemName == (string)data[i]["Name"])
             {
                 GameManager.Instance.ArmorItem = (int)data[i]["Armor"];
+                // 방어구 인벤토리 스텟 텍스트 적용
+                ArmorTabNameText.text = (string)data[i]["Name"];
+                ArmorTabStatText.text = "방어력 + " + (int)data[i]["Armor"];
                 currentArmorItemIndex = i;
             }
         }
@@ -315,7 +331,11 @@ public class ITEMMANAGER : MonoBehaviour
                 instantiate.transform.position = Player.transform.position;
                 instantiate.SetActive(true);
             }
+
             Weapon1Image.sprite = itemImage;
+            // 1번 슬롯 무기 인벤토리 이름
+            Weapon1TabNameText.text = itemName;
+
             //임시, 나중에 방법 찾자(딕셔너리)
             for(int j=0; j< HandWeapon.Count; j++)
             {
@@ -330,6 +350,8 @@ public class ITEMMANAGER : MonoBehaviour
                 if (itemName == (string)data[i]["Name"])
                 {
                     GameManager.Instance.slot1WeaponItemPower = (int)data[i]["Power"];
+                    // 1번 슬롯 무기 인벤토리 스텟
+                    Weapon1TabStatText.text = "공격력 + " + (int)data[i]["Power"];
                     currentSlot1WeaponType = (int)data[i]["Type"];
                     if(currentSlot1WeaponType == 2)
                     {
@@ -355,6 +377,8 @@ public class ITEMMANAGER : MonoBehaviour
                 instantiate.SetActive(true);
             }
             Weapon2Image.sprite = itemImage;
+            // 2번 슬롯 무기 인벤토리 이름
+            Weapon2TabNameText.text = itemName;
             //임시, 나중에 방법 찾자(딕셔너리)
             for (int j = 0; j < HandWeapon.Count; j++)
             {
@@ -369,6 +393,8 @@ public class ITEMMANAGER : MonoBehaviour
                 if (itemName == (string)data[i]["Name"])
                 {
                     GameManager.Instance.slot2WeaponItemPower = (int)data[i]["Power"];
+                    // 2번 슬롯 무기 인벤토리 스텟
+                    Weapon2TabStatText.text = "공격력 + " + (int)data[i]["Power"];
                     currentSlot2WeaponType = (int)data[i]["Type"];
                     if (currentSlot2WeaponType == 2)
                     {

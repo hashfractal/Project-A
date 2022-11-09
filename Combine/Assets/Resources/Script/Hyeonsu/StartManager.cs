@@ -11,6 +11,8 @@ public class StartManager : MonoBehaviour
 
     public SpriteRenderer m_SpriteRenderer;
 
+    public GameObject OptionPanel;
+
     // Update is called once per frame
     void Update()
     {
@@ -49,4 +51,24 @@ public class StartManager : MonoBehaviour
     {
         SceneManager.LoadScene(1);
     }
+
+    public void OptionClick()
+    {
+        OptionPanel.SetActive(true);
+    }
+
+    public void OptionClose()
+    {
+        OptionPanel.SetActive(false);
+    }
+
+    public void GameClose()
+    {
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit(); // 어플리케이션 종료
+#endif
+    }
 }
+

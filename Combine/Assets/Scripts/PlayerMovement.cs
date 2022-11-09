@@ -414,7 +414,7 @@ public class PlayerMovement : MonoBehaviour
     #region 이동 관련 필드
     private void Move()
     {
-        //transHorizontalandVertical();
+        transHorizontalandVertical();
 
         Vector3 transVector = new Vector3(joystick.Horizontal, joystick.Vertical, 0);
 
@@ -425,12 +425,11 @@ public class PlayerMovement : MonoBehaviour
         myAnim.SetFloat("MoveX", playerRb.velocity.x);
         myAnim.SetFloat("MoveY", playerRb.velocity.y);
 
-        //Debug.Log(playerRb.velocity.x);
-        //Debug.Log(joystick.Vertical);
 
         if (myAnim.GetBool("weaponType") == true)
         {
             if (joystick.Horizontal > 0.9 || joystick.Horizontal < -0.9 || joystick.Vertical > 0.9 || joystick.Vertical < -0.9)
+            //if(transVector.x > 0.9 || transVector.x < -0.9 || transVector.y > 0.9 || transVector.y < -0.9)
             {
                 myAnim.SetFloat("LastMoveX", Horizontal);
                 myAnim.SetFloat("LastMoveY", Vertical);
@@ -442,10 +441,14 @@ public class PlayerMovement : MonoBehaviour
             // 마우스로 에임이동
             transJoyStickPos();
 
-            myAnim.SetFloat("MouseX", joystick1.Horizontal);
-            myAnim.SetFloat("MouseY", joystick1.Vertical);
+            Vector3 transAimVector = new Vector3(joystick1.Horizontal, joystick1.Vertical, 0);
+            transAimVector.Normalize();
+           
+            myAnim.SetFloat("MouseX", transAimVector.x);
+            myAnim.SetFloat("MouseY", transAimVector.y);
 
-            if (Mathf.Abs(joystick1.Horizontal) > 0.9 || Mathf.Abs(joystick1.Vertical) > 0.9)
+            //if (Mathf.Abs(joystick1.Horizontal) > 0.9 || Mathf.Abs(joystick1.Vertical) > 0.9)
+            if(Mathf.Abs(transAimVector.x) > 0.9 || Mathf.Abs(transAimVector.y) > 0.9)
             {
                 myAnim.SetBool("isMouseMove", true);
             }
@@ -517,7 +520,8 @@ public class PlayerMovement : MonoBehaviour
     //어택박스 position (원거리)
     private void distanceAttackPosition()
     {
-        if (MousePosition.x < -0.1f)
+        //if (MousePosition.x < -0.1f)
+        if(joystick1.Horizontal < -0.1f)
         {
             if (isFlip == false)
             {
