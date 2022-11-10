@@ -12,12 +12,8 @@ public class GameManager : MonoBehaviour
 
     // 플레이어 정보 출력
     //추후 수정(UI로 바꾸기)
-    [SerializeField]
-    Text PlayerHp;
-    [SerializeField]
-    Text PlayerAp;
-    [SerializeField]
-    Text PlayerPw;
+
+    public Image HpImage;
     //
 
     //Item Data
@@ -108,6 +104,9 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
+        QualitySettings.vSyncCount = 0;
+        Application.targetFrameRate = 60;
+
         HP = MaxHP;
         checkSlot = true;
         //속도 바뀜
@@ -143,7 +142,7 @@ public class GameManager : MonoBehaviour
     #region 플레이어 스탯 및 UI 관리 필드
     private void PlayerState()
     {
-        PlayerHp.text = "HP : " + MaxHP.ToString() + "/"  + HP.ToString();
+        //PlayerHp.text = "HP : " + MaxHP.ToString() + "/"  + HP.ToString();
         if (HP <= 0)
         {
             HP = 0;
@@ -154,12 +153,21 @@ public class GameManager : MonoBehaviour
         {
             HP = MaxHP;
         }
-        PlayerAp.text = "AP : " + AP.ToString();
+        //PlayerAp.text = "AP : " + AP.ToString();
         if (AP < 0)
         {
             AP = 0;
         }
-        PlayerPw.text = "Power : " + HitDamage.ToString();
+        //PlayerPw.text = "Power : " + HitDamage.ToString();
+
+        if (HP < MaxHP)
+        {
+            HpImage.fillAmount = (float)HP / (float)MaxHP;
+        }
+        else
+        {
+            HP = MaxHP;
+        }
     }
     #endregion
 
