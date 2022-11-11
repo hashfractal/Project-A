@@ -80,7 +80,8 @@ public class Player : Singleton<Player>
 						{
 							for (int k = 0; k < ts.childCount; k++)
 							{
-								ts.GetChild(k).GetChild(0).gameObject.layer = 8;
+								for (int r = 0; r < ts.GetChild(k).childCount; r++)
+								ts.GetChild(k).GetChild(r).gameObject.layer = 8;
 							}
 						}
 					}
