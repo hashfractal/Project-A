@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,6 +15,9 @@ public class GameManager : MonoBehaviour
     //추후 수정(UI로 바꾸기)
 
     public Image HpImage;
+
+    public TextMeshProUGUI T_AttackPowerText;
+    public TextMeshProUGUI T_ArmorPowerText;
     //
 
     //Item Data
@@ -107,7 +111,7 @@ public class GameManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
 
-        HP = MaxHP;
+        HP = 50;
         checkSlot = true;
         //속도 바뀜
         PlayerMoveSpeed = 500f;
