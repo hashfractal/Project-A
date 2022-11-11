@@ -2,7 +2,7 @@ Index,Name,Tooltip,Armor,Power,Type,BulletIndex,Range.x,Range.y
 1,Armor1,기본 방어구 1,5,0,0,0,0,0
 2,Armor2,기본 방어구 2,5,0,0,0,0,0
 3,Armor3,기본 방어구 3,5,0,0,0,0,0
-4,IronBody,좀 더 단단한 몸통 방어구,10,0,0,0,0,0
+4,Armor4,기본 방어구 4,10,0,0,0,0,0
 5,Sword,나중에 쓸 청동검,0,10,1,0,0.6,0.65
 6,Stone,뗀석기,0,10,1,0,0.2,0.2
 7,Wood,나무막대기,0,10,1,0,0.2,0.2
