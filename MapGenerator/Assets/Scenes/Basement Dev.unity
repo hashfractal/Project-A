@@ -562,7 +562,7 @@ Camera:
   m_Depth: 0
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 768
+    m_Bits: 1792
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: 0b96d59b0fccc8c45bd7a7cf0111244d, type: 2}
   m_TargetDisplay: 0
@@ -1205,11 +1205,11 @@ MonoBehaviour:
   - Hidden
   - Start
   roomPrefabsList:
-  - {fileID: 2921295173739769028, guid: 0c28deb6b9a3ee74d9aaa34ab5415016, type: 3}
+  - {fileID: 2921295173739769028, guid: abd7565400f64b244b5baa7d724d06d5, type: 3}
   - {fileID: 6019268754802865015, guid: 9e7941d94807c334b9510f0d1b96808c, type: 3}
   - {fileID: 2921295173739769028, guid: 3f8d11f926331cc47bb92ac4e7d8ef33, type: 3}
   - {fileID: 2921295173739769028, guid: 60f380f760499a7418822b349204fe89, type: 3}
-  - {fileID: 2921295173739769028, guid: bf142aa0f359cd3478670bfbd693d60c, type: 3}
+  - {fileID: 2921295173739769028, guid: aa42d2430ca9c7241886870f5b15e7d1, type: 3}
 --- !u!850595691 &1775536336
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1461,7 +1461,7 @@ Camera:
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 567
+    m_Bits: 1591
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
   m_TargetDisplay: 0
