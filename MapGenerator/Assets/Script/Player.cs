@@ -56,14 +56,6 @@ public class Player : Singleton<Player>
 					{
 						Transform ts = temp.GetChild(j);
 						ts.gameObject.SetActive(true);
-
-						if(ts.name == "SideWall")
-						{
-							for (int k = 0; k < ts.childCount; k++)
-							{
-								ts.GetChild(k).GetChild(0).gameObject.layer = 10;
-							}
-						}
 					}
 				}
 				else
@@ -72,16 +64,9 @@ public class Player : Singleton<Player>
 					for (int j = 0; j < temp.childCount; j++)
 					{
 						Transform ts = temp.GetChild(j);
-						if (ts.name != "Minimap Icon" && ts.name != "SideWall")
+						if (ts.name != "Minimap Icon")
 						{
 							ts.gameObject.SetActive(false);
-						}
-						else if(ts.name == "SideWall")
-						{
-							for (int k = 0; k < ts.childCount; k++)
-							{
-								ts.GetChild(k).GetChild(0).gameObject.layer = 8;
-							}
 						}
 					}
 				}
