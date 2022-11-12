@@ -220,6 +220,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6325479132479935993, guid: 1c1d05e2d919b034b87f85cb014753a0, type: 3}
+      propertyPath: backgroundColor.a
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8631431977216309130, guid: 1c1d05e2d919b034b87f85cb014753a0, type: 3}
       propertyPath: m_Name
       value: Minimap Icon

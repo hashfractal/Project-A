@@ -68,8 +68,8 @@ public class RoomMinimap : MonoBehaviour
 	public void VisitiedCurrRoom(bool boolean)
 	{
 		// 4. 현재 위치 밝게 처리
-		//if (boolean)
-			//floorTilemap.transform.GetComponent<Tilemap>().color = backgroundColor;
+		if (boolean)
+			floorTilemap.transform.GetComponent<Tilemap>().color = backgroundColor;
 	}
 
 	public void minimapWallset(bool boolean)
