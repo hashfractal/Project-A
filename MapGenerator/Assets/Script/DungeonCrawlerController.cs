@@ -438,17 +438,17 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 
 						//맵 종류 선택
 						string rroomname = "Single";
-						switch (RoomRandomCount())
-						{
-							case 1:
-								rroomname = "Elite";
-								break;
-							case 2:
-								rroomname = "Hidden";
-								break;
-							default:
-								break;
-						}
+						//switch (RoomRandomCount())
+						//{
+						//	case 1:
+						//		rroomname = "Elite";
+						//		break;
+						//	case 2:
+						//		rroomname = "Hidden";
+						//		break;
+						//	default:
+						//		break;
+						//}
 
 						posArr[move.y, move.x].roomName                 = rroomname;
 						posArr[move.y, move.x].center_Position          = start + collectPatten[direction][selectPatten][i];

@@ -115,8 +115,8 @@ public class RoomController : Singleton<RoomController>
 
 		for (int i = 0; i < loadedRooms.Count; i++)
 		{
-			//if (room.parent_Position == loadedRooms[i].parent_Position)
-			//	loadedRooms[i].childRooms.minimapUpdate();
+			if (room.parent_Position == loadedRooms[i].parent_Position)
+				loadedRooms[i].childRooms.minimapUpdate();
 		}
 	}
 
