@@ -104,7 +104,8 @@ public class ITEMMANAGER : MonoBehaviour
 
     //아이템 창
     public GameObject ItemWindow;
-    public TextMeshProUGUI ItemWindowArrow;
+    public Button ItemArrowButton;
+    public Sprite[] ItemWindowArrow;
 
     #region 인스턴스 필드
     public static ITEMMANAGER Instance
@@ -138,13 +139,15 @@ public class ITEMMANAGER : MonoBehaviour
         {         
             rect.anchoredPosition = Vector3.zero;
             cv.sortingOrder = 100;
-            ItemWindowArrow.text = "<";
+            //ItemWindowArrow.text = "<";
+            ItemArrowButton.image.sprite = ItemWindowArrow[0];
         }
         else
         {
             rect.anchoredPosition = new Vector3(-770, 0, 0);
             cv.sortingOrder = 0;
-            ItemWindowArrow.text = ">";
+            //ItemWindowArrow.text = ">";
+            ItemArrowButton.image.sprite = ItemWindowArrow[1];
         }
     }
     #endregion

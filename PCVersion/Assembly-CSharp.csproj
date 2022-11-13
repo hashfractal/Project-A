@@ -73,6 +73,7 @@
     <Compile Include="Assets\DownAssets\Epic Toon FX\Demo\Scripts\ETFXMouseOrbit.cs" />
     <Compile Include="Assets\Scripts\PlayerSkillManager.cs" />
     <Compile Include="Assets\DownAssets\Epic Toon FX\Demo\Scripts\ETFXTarget.cs" />
+    <Compile Include="Assets\Scripts\Enemy\EliteMonster\W3AttackScript.cs" />
     <Compile Include="Assets\DownAssets\Epic Toon FX\Scripts\ETFXRotation.cs" />
     <Compile Include="Assets\Scripts\Skills\F\F_1.cs" />
     <Compile Include="Assets\Scripts\ISkill.cs" />
@@ -112,7 +113,6 @@
     <Compile Include="Assets\Resources\Script\Player.cs" />
     <Compile Include="Assets\DownAssets\Epic Toon FX\Demo\Scripts\ETFXProjectileScript.cs" />
     <Compile Include="Assets\Scripts\Enemy\EliteMonster\EliteMonster.cs" />
-    <Compile Include="Assets\Scripts\Enemy\EliteMonster\W3AttackScript.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />

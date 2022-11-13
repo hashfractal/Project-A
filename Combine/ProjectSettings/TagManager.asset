@@ -19,6 +19,7 @@ TagManager:
   - Boss
   - Door
   - EliteWeapon
+  - Minimap
   layers:
   - Default
   - TransparentFX
@@ -32,7 +33,7 @@ TagManager:
   - Wall
   - Obstacle
   - SuperMan
-  - 
+  - Minimap
   - 
   - 
   - 

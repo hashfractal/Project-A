@@ -437,12 +437,9 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 						posArr[move.y, move.x].isValidRoom              =  true;
 
 						//맵 종류 선택
-						string rroomname = "";
+						string rroomname = "Single";
 						switch (RoomRandomCount())
 						{
-							case 0:
-								rroomname = "Single";
-								break;
 							case 1:
 								rroomname = "Elite";
 								break;

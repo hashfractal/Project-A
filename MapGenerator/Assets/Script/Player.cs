@@ -51,40 +51,11 @@ public class Player : Singleton<Player>
 			{
 				if (nextRoom.GetComponent<Room>().parent_Position == RoomController.Instance.loadedRooms[i].parent_Position)
 				{
-					Transform temp = RoomController.Instance.loadedRooms[i].childRooms.gameObject.transform;
-					for (int j = 0; j < temp.childCount; j++)
-					{
-						Transform ts = temp.GetChild(j);
-						ts.gameObject.SetActive(true);
-
-						if(ts.name == "SideWall")
-						{
-							for (int k = 0; k < ts.childCount; k++)
-							{
-								ts.GetChild(k).GetChild(0).gameObject.layer = 10;
-							}
-						}
-					}
+					RoomController.Instance.loadedRooms[i].childRooms.gameObject.SetActive(true);
 				}
 				else
 				{
-					Transform temp = RoomController.Instance.loadedRooms[i].childRooms.gameObject.transform;
-					for (int j = 0; j < temp.childCount; j++)
-					{
-						Transform ts = temp.GetChild(j);
-						if (ts.name != "Minimap Icon" && ts.name != "SideWall")
-						{
-							ts.gameObject.SetActive(false);
-						}
-						else if(ts.name == "SideWall")
-						{
-							for (int k = 0; k < ts.childCount; k++)
-							{
-								for (int r = 0; r < ts.GetChild(k).childCount; r++)
-								ts.GetChild(k).GetChild(r).gameObject.layer = 8;
-							}
-						}
-					}
+					RoomController.Instance.loadedRooms[i].childRooms.gameObject.SetActive(false);
 				}
 			}
 

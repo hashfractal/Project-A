@@ -47,34 +47,46 @@ public class RoomManager : MonoBehaviour
     {
         GameManager.Instance.Boss1Pos = _BossRoom;
         _BossRoom.SetActive(false);
-       
-        Rc.CreatedRoom();
-    }
+
+		//Rc.CreatedRoom();
+		StartCoroutine(CheckRoomController());
+	}
+
     // Update is called once per frame
     void Update()
     {
-        Room room = GameObject.Find(Roomname).GetComponent<Room>();
-        
-        Roomname2 = room.roomName;
+        if(Roomname != null && Roomname != "")
+        {
+			Room room = GameObject.Find(Roomname).GetComponent<Room>();
 
-        if(Roomname2 == "Single")
-        {
-            SingleRoom();
-        }
-        if(Roomname2 == "Elite")
-        {
-            EliteRoom();
-        }
-        if(Roomname2 == "Hidden")
-        {
-            HiddenRoom();
-        }
-        if(Roomname2 == "Boss")
-        {
-            BossRoom();
-        }
+			Roomname2 = room.roomName;
+
+			if (Roomname2 == "Single")
+			{
+				SingleRoom();
+			}
+			if (Roomname2 == "Elite")
+			{
+				EliteRoom();
+			}
+			if (Roomname2 == "Hidden")
+			{
+				HiddenRoom();
+			}
+			if (Roomname2 == "Boss")
+			{
+				BossRoom();
+			}
+		}
     }
-    void CloseDoor()
+
+	IEnumerator CheckRoomController()
+	{
+		yield return new WaitForSeconds(0.1f);
+		Rc.CreatedRoom();
+	}
+
+	void CloseDoor()
     {
         DoorCheck = false;
     }

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
@@ -13,8 +14,19 @@ public class GameManager : MonoBehaviour
     // 플레이어 정보 출력
     //추후 수정(UI로 바꾸기)
 
-    public Image HpImage;
+    public Image T_HpImage;
+
+    public TextMeshProUGUI T_AttackPowerText;
+    public TextMeshProUGUI T_ArmorPowerText;
+
+    public TextMeshProUGUI T_MugwortCountText;
+    public TextMeshProUGUI T_GarlicCountText;
     //
+
+    // 일시 정지 메뉴 출력
+    public GameObject PauseMenu;
+    public Canvas PrefabCanvas;
+    
 
     //Item Data
     public int HealthItemCount = 0;
@@ -107,7 +119,7 @@ public class GameManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
 
-        HP = MaxHP;
+        HP = 50;
         checkSlot = true;
         //속도 바뀜
         PlayerMoveSpeed = 500f;
@@ -120,24 +132,56 @@ public class GameManager : MonoBehaviour
         FireAttribute = 0;
         WaterAttribute = 0;
         EarthAttribute = 0;
-    }
+
+        //일시 정지 메뉴 비활성화
+        PauseMenu.SetActive(false);
+	}
 
     void Update()
     {
+        // 쑥, 마늘 카운트 텍스트
+        T_MugwortCountText.text = MugwortCount.ToString() + "개";
+        T_GarlicCountText.text = GarlicCount.ToString() + "개";
+
         AP = ArmorItem;
+        T_ArmorPowerText.text = AP.ToString();
         //슬롯 1번일때
         if(checkSlot == true)
         {
             HitDamage = PlayerPower + slot1WeaponItemPower;
+            T_AttackPowerText.text = HitDamage.ToString();
         }
         //슬롯 2번일때
         else if(checkSlot == false)
         {
             HitDamage = PlayerPower + slot2WeaponItemPower;
+            T_AttackPowerText.text = HitDamage.ToString();
         }
         //추후 수정
         PlayerState();
     }
+
+    #region 게임 일시 정지 및 버튼 관리 필드
+    public void PauseClick()
+    {
+        Time.timeScale = 0.0f;
+        PauseMenu.SetActive(true);
+        PrefabCanvas.sortingOrder = 1000;
+    }
+
+    public void ResumeClick()
+    {
+        Time.timeScale = 1.0f;
+        PauseMenu.SetActive(false);
+        PrefabCanvas.sortingOrder = 0;
+    }
+
+    public void MainMenuClick()
+    {
+        SceneManager.LoadScene(0);
+    }
+
+    #endregion
 
     #region 플레이어 스탯 및 UI 관리 필드
     private void PlayerState()
@@ -162,7 +206,7 @@ public class GameManager : MonoBehaviour
 
         if (HP < MaxHP)
         {
-            HpImage.fillAmount = (float)HP / (float)MaxHP;
+            T_HpImage.fillAmount = (float)HP / (float)MaxHP;
         }
         else
         {

@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
@@ -32,19 +33,13 @@ public class EliteMonster : MonoBehaviour
 
     public GameObject EweaponAttackPosParent;
     public GameObject EweaponAttackPos;
-    public GameObject targetPosition; //플레이어
+    private GameObject targetPosition; //플레이어
+    private Coroutine co = null;
     public SpriteRenderer EliteSR;
     private Rigidbody2D EliteRb;
     private Animator EliteAnimator;
     private Animator Attack3Animator;
 
-    //[FireElite] 사용 멤버 필드
-    //private bool isColWall;
-    //////////////////////////
-
-    //[WaterElite] 사용 멤버 필드
-    //private GameObject[] bool isColWall;
-    //////////////////////////
 
     private void ClassificationEliteEnemy()
     {
@@ -121,6 +116,7 @@ public class EliteMonster : MonoBehaviour
     void Start()
     {
         GameManager.Instance.PlayerDieEvent += this.PlayerOnDie;
+        targetPosition = GameObject.FindWithTag("Player");
         EliteRb = GetComponent<Rigidbody2D>();
         EliteAnimator = GetComponent<Animator>();
         isThirdAttack = false;
@@ -152,15 +148,6 @@ public class EliteMonster : MonoBehaviour
 
         if (distance <= fieldOfVision)
         {
-            //if (isPatrolling)
-            //{
-            //    //Patrol 코루틴을 종료시키기 위한 Stop
-            //    StopAllCoroutines();
-            //    checkCoroutine = false;
-            //    isPatrol = false;
-            //    isPatrolling = false;
-            //    enemy.EweaponAttakPosSR.flipX = false;
-            //}
             AttackPosition();
             FaceTarget();
             if (distance <= atkRange)
@@ -258,7 +245,10 @@ public class EliteMonster : MonoBehaviour
             }
             else if(enemyData[0] == "W")
             {
-                Water3Pattern();
+                if (co == null)
+                {
+                    co = StartCoroutine(Water3Pattern());
+                }
             }
             else if(enemyData[0] == "E")
             {
@@ -281,13 +271,32 @@ public class EliteMonster : MonoBehaviour
     #endregion
 
     #region Water 3단계 필드
-    private void Water3Pattern()
+    IEnumerator Water3Pattern()
     {
         isThirdAttack = true;
         //W_3 스킬 공격 애니메이션 추가
-        GameObject W3Skill = Instantiate(EliteMonsterWeaponPrefab[0], targetPosition.transform.position, 
-            Quaternion.Euler(0,0,0));
-        Invoke("Water3Pattern", 1f);
+        for(int index = 0; index < 4; index++)
+        {
+            GameObject W3Skill = Instantiate(EliteMonsterWeaponPrefab[0], targetPosition.transform.position,
+                    Quaternion.Euler(0, 0, 0));
+            Water3PatternDestroy(W3Skill, 1.1f);
+            yield return new WaitForSeconds(1.2f);
+        }
+        yield return new WaitForSeconds(2f);
+        co = null;
+        PatternOut();
+    }
+
+    private void Water3PatternDestroy(GameObject w3a, float time)
+    {
+        Destroy(w3a,time);
+    }
+    #endregion
+
+    #region Earth 3단계 필드
+    IEnumerator Earth3Pattern()
+    {
+        yield return new WaitForSeconds(1.2f);
     }
     #endregion
 

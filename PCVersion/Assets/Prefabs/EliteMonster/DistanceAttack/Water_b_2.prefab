@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 219838351844599087}
   - component: {fileID: 8084490375239568584}
   - component: {fileID: 5039738376618194902}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Water_b_2
   m_TagString: EliteWeapon
   m_Icon: {fileID: 0}

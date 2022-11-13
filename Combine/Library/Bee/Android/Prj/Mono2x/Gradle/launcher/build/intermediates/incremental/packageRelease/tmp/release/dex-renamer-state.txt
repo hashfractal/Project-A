@@ -1,4 +1,0 @@
-#Wed Nov 09 21:52:38 KST 2022
-base.0=D\:\\Project\\Unity\\Git\\Project-A\\Combine\\Library\\Bee\\Android\\Prj\\Mono2x\\Gradle\\launcher\\build\\intermediates\\dex\\release\\mergeDexRelease\\classes.dex
-path.0=classes.dex
-renamed.0=classes.dex

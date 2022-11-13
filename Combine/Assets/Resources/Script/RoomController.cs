@@ -71,7 +71,7 @@ public class RoomController : Singleton<RoomController>
 		
 		//방의 물리적 위치를 설정, 단위 방의 크기가 10*10 일 때, 방의 상대 좌표(posArr상의 좌표)가 5,5라면 절대 좌표(유니티 상의 좌표)는 50,50
 		room.transform.position = new Vector3(
-					settingRoom.center_Position.x * room.transform.GetComponent<Room>().Width,
+					settingRoom.center_Position.x * room.transform.GetComponent<Room>().Width, 
 					settingRoom.center_Position.y * room.transform.GetComponent<Room>().Height,
 					settingRoom.center_Position.z
 		);
@@ -120,8 +120,8 @@ public class RoomController : Singleton<RoomController>
 
 		for (int i = 0; i < loadedRooms.Count; i++)
 		{
-			//if (room.parent_Position == loadedRooms[i].parent_Position)
-			//	loadedRooms[i].childRooms.minimapUpdate();
+			if (room.parent_Position == loadedRooms[i].parent_Position)
+				loadedRooms[i].childRooms.minimapUpdate();
 		}
 	}
 

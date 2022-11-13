@@ -124,8 +124,8 @@ public class SubRoom : MonoBehaviour
 			tmpChildRoom.transform.parent.GetComponent<Room>().SetUpdateWalls(false);
 
 
-			//GameObject miniRoom = minimapRoom.gameObject;
-			//miniRoom.transform.SetParent(parentRoom.transform);
+			GameObject miniRoom = minimapRoom.gameObject;
+			miniRoom.transform.SetParent(parentRoom.transform);
 		}
 	}
 	public void minimapUpdate()
@@ -143,23 +143,32 @@ public class SubRoom : MonoBehaviour
 			}
 			else
 			{
-				RoomController.Instance.loadedRooms[i].childRooms.minimapRoom.VisitiedCurrRoom(false);
+				try
+				{
+					RoomController.Instance.loadedRooms[i].childRooms.minimapRoom.VisitiedCurrRoom(false);
+				}
+				catch (System.Exception)
+				{
+					Debug.Log(i);
+					throw;
+				}
+				
 			}
 		}
 
 		// 2. 해당 인접한 Room에 대해서 visible 
-		//if (GetRight() != null)
-		//    minimapUpdateSide(GetRight());
+		if (GetRight() != null)
+			minimapUpdateSide(GetRight());
 
-		//if (GetLeft() != null)
-		//    minimapUpdateSide(GetLeft());
+		if (GetLeft() != null)
+			minimapUpdateSide(GetLeft());
 
 
-		//if (GetTop() != null)
-		//    minimapUpdateSide(GetTop());
+		if (GetTop() != null)
+			minimapUpdateSide(GetTop());
 
-		//if (GetBottom() != null)
-		//    minimapUpdateSide(GetBottom());
+		if (GetBottom() != null)
+			minimapUpdateSide(GetBottom());
 	}
 	public void minimapUpdateSide(Room room)
 	{
@@ -187,8 +196,8 @@ public class SubRoom : MonoBehaviour
 							leftDoor.gameObject.SetActive(false);
 							leftWall.gameObject.SetActive(false);
 							
-							//minimapRoom.leftWall.gameObject.SetActive(false);
-							//minimapRoom.leftWall.isSetUp = false;
+							minimapRoom.leftWall.gameObject.SetActive(false);
+							minimapRoom.leftWall.isSetUp = false;
 
 						}
 						else
@@ -228,8 +237,8 @@ public class SubRoom : MonoBehaviour
 						{
 							topDoor.gameObject.SetActive(false);
 							topWall.gameObject.SetActive(false);
-							//minimapRoom.topWall.gameObject.SetActive(false);
-							//minimapRoom.topWall.isSetUp = false;
+							minimapRoom.topWall.gameObject.SetActive(false);
+							minimapRoom.topWall.isSetUp = false;
 
 						}
 						else
@@ -268,8 +277,8 @@ public class SubRoom : MonoBehaviour
 							rightDoor.gameObject.SetActive(false);
 							rightWall.gameObject.SetActive(false);
 
-							//minimapRoom.rightWall.gameObject.SetActive(false);
-							//minimapRoom.rightWall.isSetUp = false;
+							minimapRoom.rightWall.gameObject.SetActive(false);
+							minimapRoom.rightWall.isSetUp = false;
 
 						}
 						else
@@ -311,8 +320,8 @@ public class SubRoom : MonoBehaviour
 							bottomDoor.gameObject.SetActive(false);
 							bottomWall.gameObject.SetActive(false);
 
-							//minimapRoom.bottomWall.gameObject.SetActive(false);
-							//minimapRoom.bottomWall.isSetUp = false;
+							minimapRoom.bottomWall.gameObject.SetActive(false);
+							minimapRoom.bottomWall.isSetUp = false;
 
 						}
 						else
@@ -391,12 +400,8 @@ public class SubRoom : MonoBehaviour
 			Room room = transform.parent.GetComponent<Room>();
 			RoomController.Instance.OnPlayerEnterRoom(room);
 
-			
-
 			Debug.Log(gameObject.transform.parent.name);
 			rm.Roomname = gameObject.transform.parent.name;
-
-			transform.Find("Minimap Icon").GetChild(0).GetChild(0).GetComponent<Tilemap>().color = Color.gray;
 		}
 	}
 }

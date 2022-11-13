@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,30 +10,18 @@ public class StartManager : MonoBehaviour
     [SerializeField]
     Camera m_Camera;
 
-    public SpriteRenderer m_SpriteRenderer;
-
     public GameObject OptionPanel;
 
     // Update is called once per frame
-    void Update()
-    {
-        StartCoroutine(FadeOut());
 
-        if(m_SpriteRenderer.color.a <= 0.0f)
-        {
-            CameraMove();
-        }
+    private void Start()
+    {
+        m_Camera.transform.position = new Vector3(0, 1.5f, -10);
     }
 
-    IEnumerator FadeOut()
+    private void Update()
     {
-        Color color = m_SpriteRenderer.color;
-        while (color.a > 0f)
-        {
-            color.a -= Time.deltaTime / 2f;
-            m_SpriteRenderer.color = color;
-            yield return null;
-        }
+        CameraMove();
     }
 
     void CameraMove()

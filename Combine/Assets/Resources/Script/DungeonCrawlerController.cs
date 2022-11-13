@@ -436,13 +436,10 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 						posArr[move.y, move.x].isValidRoom              =  true;
 
 						int n;
-						string rroomname = "";
+						string rroomname = "Single";
 						n = RoomRandomCount();
                         switch (n)
                         {
-							case 0:
-								rroomname = "Single";
-								break;
 							//case 1:
 							//	rroomname = "Elite";
 							//	break;
@@ -558,7 +555,11 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			for (int j = 0; j < maxDistance * 2; j++)
 			{
 				if (posArr[i, j].isValidRoom)
+				{
+
 					showposarr += string.Format("{0} ", posArr[i, j].distance);
+					Debug.Log(posArr[i, j].roomID + posArr[i, j].roomName + posArr[i, j].roomType);
+				}
 				else
 					showposarr += "[ ]";
 			}

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5367536414254045986}
   - component: {fileID: 1579199849601028373}
   - component: {fileID: 5765465970140660457}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Earth_b_1
   m_TagString: EliteWeapon
   m_Icon: {fileID: 0}

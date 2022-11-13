@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2584184175915891640}
   - component: {fileID: 668420930104760356}
   - component: {fileID: 2748317016565792644}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Fire_b_2
   m_TagString: EliteWeapon
   m_Icon: {fileID: 0}
