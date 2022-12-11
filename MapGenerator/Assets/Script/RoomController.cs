@@ -16,7 +16,9 @@ public class RoomController : Singleton<RoomController>
 	public Material VisitedBack;
 	public Material currMaterial;
 
+	public GameObject Player;
 
+	
 	public bool isLoadingRoom = false;
 
 	public void CreatedRoom()
@@ -55,11 +57,40 @@ public class RoomController : Singleton<RoomController>
 			return;
 		}
 
-		string roomPreName = settingRoom.roomName;
+		string roomPreName = "";
+
+		if (settingRoom.roomName == "Single")
+		{
+			switch (Random.Range(0, 4))
+			{
+				case 0:
+					roomPreName = "Single";
+					break;
+				case 1:
+					roomPreName = "Single1";
+					break;
+				case 2:
+					roomPreName = "Single2";
+					break;
+				case 3:
+					roomPreName = "Single3";
+					break;
+			}
+		}
+		else
+		{
+			roomPreName = settingRoom.roomName;
+		}
+
+		if (settingRoom.roomName == "Boss" && DungeonCrawlerController.Instance.bossroomname != null)
+		{
+			roomPreName = DungeonCrawlerController.Instance.bossroomname;
+		}
+
 		//유니티 방 객체 생성
 		//RoomPrefabsSet: 인게임 GameManager 객체로부터 사전에 방정보를 등록하는데 사용된 스크립트 roomPrefabs 딕셔너리에 키: 프리팹 네임, 벨류: 해당되는 맵 프리팹이 있음
 		//				  (Prefabs\BossMap\BossRoom.prefab, Prefabs\NormalMap\NormalRoom.prefab)
-		if(roomPreName == null || roomPreName == "")
+		if (roomPreName == null || roomPreName == "")
 		{
 			return;
 		}

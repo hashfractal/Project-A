@@ -1204,12 +1204,20 @@ MonoBehaviour:
   - Elite
   - Hidden
   - Start
+  - Single1
+  - Single2
+  - Single3
+  - Boss1
   roomPrefabsList:
   - {fileID: 2921295173739769028, guid: abd7565400f64b244b5baa7d724d06d5, type: 3}
   - {fileID: 6019268754802865015, guid: 9e7941d94807c334b9510f0d1b96808c, type: 3}
   - {fileID: 2921295173739769028, guid: 3f8d11f926331cc47bb92ac4e7d8ef33, type: 3}
   - {fileID: 2921295173739769028, guid: 60f380f760499a7418822b349204fe89, type: 3}
   - {fileID: 2921295173739769028, guid: aa42d2430ca9c7241886870f5b15e7d1, type: 3}
+  - {fileID: 2921295173739769028, guid: 04e53512055fe834eae9ede392fb72bb, type: 3}
+  - {fileID: 2921295173739769028, guid: 4d0f4d025433a794396c2783e7382d43, type: 3}
+  - {fileID: 2921295173739769028, guid: f71ea47cdebc8904791a901e5bd0041e, type: 3}
+  - {fileID: 6019268754802865015, guid: 5cf632379f2c7aa4e976bfca16c14f77, type: 3}
 --- !u!850595691 &1775536336
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -1316,12 +1324,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b89c7970ed4d52e46926c5234b6b8b33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minRoomCnt: 20
-  maxRoomCnt: 20
+  minRoomCnt: 4
+  maxRoomCnt: 4
   currRoomCnt: 0
-  maxDistance: 3
-  eliteCount: 5
-  hiddenCount: 5
+  maxDistance: 2
+  bossroomname: Boss1
+  eliteCount: 0
+  hiddenCount: 0
   validRoomCount: 0
   startRoomPosition: {x: 0, y: 0, z: 0}
   bossRoomPosition: {x: 0, y: 0, z: 0}

@@ -38,6 +38,7 @@ public class Player : Singleton<Player>
 	{
 		if (collision.tag == "Door")
 		{
+			DungeonCrawlerController.Instance.posArr.ToString();
 			FadeInOut.Instance.setFade(true, 1.35f);
 
 			GameObject nextRoom = collision.gameObject.transform.parent.GetComponent<Door>().nextRoom;

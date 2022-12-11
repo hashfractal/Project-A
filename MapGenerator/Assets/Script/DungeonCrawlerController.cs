@@ -70,10 +70,11 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 	public int maxRoomCnt       = 20;                       // 최대 방 갯수
 	public int currRoomCnt      = 0;                        // 현재 방 갯수
 	public int maxDistance      = 5;                        // 최대 거리 제한
+	public string bossroomname = null;
 	public int eliteCount		= 0;
 	public int hiddenCount		= 0;
 
-	public int validRoomCount   = 0;       
+	public int validRoomCount   = 0;
 
 	public Vector3Int startRoomPosition;                        // 시작 포지션
 	public Vector3Int bossRoomPosition;                         // 보스 방 포지션
@@ -590,5 +591,23 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			showposarr += "\n";
 		}
 		Debug.Log(showposarr);
+	}
+
+	public void showposarr()
+	{
+		string res = "y↑, x→\n";
+		for (int i = maxDistance * 2 - 1; i > -1; i--)
+		{
+			
+			for (int j = 0; j < maxDistance * 2; j++)
+			{
+				if (posArr[i, j].isValidRoom)
+					res += string.Format("{0} ", posArr[i, j].roomName);
+				else
+					res += "[ ]";
+			}
+			res += "\n";
+		}
+		Debug.Log(res);
 	}
 }
