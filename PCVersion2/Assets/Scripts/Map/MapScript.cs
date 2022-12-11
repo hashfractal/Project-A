@@ -6,7 +6,9 @@ public class MapScript : MonoBehaviour
 {
     private void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.CompareTag("EliteWeaponCheck") || col.CompareTag("EliteWeapon") || col.CompareTag("PlayerWeapon") || col.CompareTag("PlayerSkill"))
+        if (col.CompareTag("EliteWeaponCheck") || col.CompareTag("EliteWeapon")
+            || col.CompareTag("PlayerWeapon") || col.CompareTag("PlayerSkill")
+            || col.CompareTag("EnemyWeapon"))
         {
             Destroy(col.gameObject);
         }

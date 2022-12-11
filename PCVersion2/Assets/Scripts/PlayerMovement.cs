@@ -4,6 +4,7 @@ using System.Runtime.CompilerServices;
 using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 using UnityEngine.UI;
 using UnityEngine.UIElements;
 using static UnityEngine.GraphicsBuffer;
@@ -11,11 +12,17 @@ using Image = UnityEngine.UI.Image;
 
 public class PlayerMovement : MonoBehaviour
 {
+    //////////////////////////보스관련 
+    /////추후 수정 필요
+    //[SerializeField]
+    //private GameObject Boss_1;
+    [SerializeField]
+    private GameObject Boss_2;
+    ///////////////////////////////////
+
     //총알 
     public GameObject[] bulletPrefab;
     private int bulletIndex;
-    //
-    
 
     //Attackposition 설정 변수
     public GameObject weaponAttackPosParent;
@@ -345,26 +352,27 @@ public class PlayerMovement : MonoBehaviour
         weaponParentAngle = Mathf.Atan2(MousePosition.y - 0
             , MousePosition.x - 0) * Mathf.Rad2Deg;
         weaponAttackPosParent.transform.rotation = Quaternion.AngleAxis(weaponParentAngle, Vector3.forward);
+        //Debug.Log(weaponAttackPosParent.transform.localEulerAngles.z);
     }
 
     private void Dodge()
     {
-        if(isDodge == false)
+        if(isDodge == false && weaponAnimPosSR.sprite == null)
         {
             myAnim.SetTrigger("doDodge");
             isDodge = true;
             PlayeroriginalWeaponSprite = weaponAttackPosSR.sprite;
             weaponAttackPosSR.sprite = null;
             gameObject.layer = 11;
-            Invoke("DodgeOut", 0.6f);
+            Invoke("DodgeOut", 0.72f);
         }
     }
 
     private void DodgeOut()
     {
-        isDodge = false;
         weaponAttackPosSR.sprite = PlayeroriginalWeaponSprite;
         gameObject.layer = 6;
+        isDodge = false;
     }
 
     //플립
@@ -397,6 +405,14 @@ public class PlayerMovement : MonoBehaviour
             if(collider.tag == "EliteMonster")
             {
                 collider.GetComponent<EliteMonster>().HitfromPlayer();
+            }
+            if (collider.tag == "Boss1")
+            {
+                collider.GetComponent<Stage1BossAI>().HitfromPlayer();
+            }
+            if (collider.tag == "Boss2")
+            {
+                Boss_2.GetComponent<Stage2BossAI>().HitfromPlayer();                
             }
         }
         
@@ -455,6 +471,18 @@ public class PlayerMovement : MonoBehaviour
         {
             //Fire, Water, Earth
             GameManager.Instance.totemAtribute = collision.gameObject.name;
+            if(GameManager.Instance.currentTotemLevel != 0 && collision.gameObject.name == "Fire")
+            {
+                ITEMMANAGER.Instance.ShowTotemPointUI(collision.gameObject, "Using Fire Totem Point\nPress 'G'");
+            }
+            else if (GameManager.Instance.currentTotemLevel != 0 && collision.gameObject.name == "Water")
+            {
+                ITEMMANAGER.Instance.ShowTotemPointUI(collision.gameObject, "Using Water Totem Point\nPress 'G'");
+            }
+            else if (GameManager.Instance.currentTotemLevel != 0 && collision.gameObject.name == "Earth")
+            {
+                ITEMMANAGER.Instance.ShowTotemPointUI(collision.gameObject, "Using Earth Totem Point\nPress 'G'");
+            }
         }
         //힐아이템 처리 필드
         if (collision.gameObject.tag == "DropItem")
@@ -496,11 +524,17 @@ public class PlayerMovement : MonoBehaviour
             FadeInOut.Instance.setFade(true, 1.35f);
 
             GameObject nextRoom = collision.gameObject.transform.parent.GetComponent<Door>().nextRoom;
+            Tilemap thisfloor = collision.gameObject.transform.parent.parent.parent.Find("Minimap Icon").GetChild(0).GetChild(0).transform.GetComponent<Tilemap>();
+
+            Color preColor = thisfloor.color;
+            Color.RGBToHSV(preColor, out float hh, out float ss, out float vv);   
+            preColor = Color.HSVToRGB(hh, ss, vv / 2);
+            thisfloor.color = preColor;
             Door nextDoor = collision.gameObject.transform.parent.GetComponent<Door>().SideDoor;
 
             // 진행 방향을 파악 후 캐릭터 위치 지정
             //Vector3 currPos = new Vector3(nextDoor.transform.position.x, nextDoor.transform.position.y, -0.5f);
-            Vector3 currPos = new Vector3(nextDoor.transform.position.x, nextDoor.transform.position.y, -0.5f) + (nextDoor.transform.localRotation * (Vector3.up * 5));
+            Vector3 currPos = new Vector3(nextDoor.transform.position.x, nextDoor.transform.position.y, -0.5f) + (nextDoor.transform.localRotation * (Vector3.up * 2f));
             transform.position = currPos;
 
             for (int i = 0; i < RoomController.Instance.loadedRooms.Count; i++)
@@ -526,6 +560,10 @@ public class PlayerMovement : MonoBehaviour
         {
             ITEMMANAGER.Instance.CloseStateWindow();
             Enteritem = false;
+        }
+        if(collision.gameObject.tag == "TotemSpawner")
+        {
+            ITEMMANAGER.Instance.CloseStateWindow();
         }
     }
     #endregion
@@ -628,33 +666,36 @@ public class PlayerMovement : MonoBehaviour
         //2스테이지 적은 Enemy2 로 바꿔서 스플릿해 스테이지마다의 데미지 다르게 하기
         if (collision.gameObject.tag == "Enemy")
         {
-            GameManager.Instance.HP -= 1;
+            GameManager.Instance.PlayerHit(1);
         }
         if(collision.gameObject.tag == "Boss1")
         {
-            GameManager.Instance.HP -= 15;
+            GameManager.Instance.PlayerHit(15);
+        }
+        if (collision.gameObject.tag == "Boss2")
+        {
+            GameManager.Instance.PlayerHit(2);
         }
         //F_3,W_3,E_3 적용
         if (collision.gameObject.tag == "EliteMonster")
         {
-            GameManager.Instance.HP -= 1;
+            GameManager.Instance.PlayerHit(1);
         }
     }
 
     //적의 '공격'에 부딪혔을때
     private void OnDamagedfromWeapon(string enemyName)
     {
-        string[] splitEnemy = enemyName.Split("_");
-        GameManager.Instance.HP -= int.Parse(splitEnemy[3]);
+        GameManager.Instance.PlayerHit(int.Parse(enemyName));
     }
     private void OnDamagedfromEliteWeapon(string enemyName)
     {
-        string[] splitEnemy = enemyName.Split("_");
-        GameManager.Instance.HP -= int.Parse(splitEnemy[2]);
+        GameManager.Instance.PlayerHit(int.Parse(enemyName));
     }
 
     private void PlayerDie()
     {
+        playerRb.velocity = Vector3.zero;
         isPlayerAlive = false;
         weaponAttackPosSR.sprite = null;
         myAnim.SetTrigger("doDeath");

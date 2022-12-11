@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 542629909419121864}
   - component: {fileID: 542629909419121867}
   - component: {fileID: 542629909419121866}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: StickBell_B
   m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}

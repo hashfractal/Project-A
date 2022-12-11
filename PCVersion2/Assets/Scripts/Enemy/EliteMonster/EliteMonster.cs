@@ -6,8 +6,12 @@ using UnityEditorInternal.Profiling.Memory.Experimental.FileFormat;
 using UnityEngine;
 using static UnityEngine.EventSystems.EventTrigger;
 
+
+public enum EltieType { F1 , F2 , F3 , W1 , W2 , W3 , E1, E2 , E3}
 public class EliteMonster : MonoBehaviour
 {
+    public EltieType type;
+
     public int EliteEnemyHp;
     public int nowHp;
     public int atkDmg;
@@ -46,62 +50,107 @@ public class EliteMonster : MonoBehaviour
     {
         enemyOriData = gameObject.name.Split("(");
         enemyData = enemyOriData[0].Split("_");
-        //불
-        if (enemyData[0] == "F")
+        switch (type)
         {
-            //enemyType = false;
-            switch (int.Parse(enemyData[1]))
-            {
-                //1단계
-                case 1:
-                    //1.hp 2.원거리데미지 3.근접 데미지 4.공격딜레이 5.공격속도(총알) 6.이동속도 7.공격범위 8.인식범위
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1.5f, 1.7f);
-                    break;
-                case 2:
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
-                    break;
-                case 3:
-                    Attack3Animator = EweaponAttackPos.GetComponent<Animator>();
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
-                    break;
-            }
+            case EltieType.F1:
+                //1.hp 2.원거리데미지 3.근접 데미지 4.공격딜레이 5.공격속도(총알) 6.이동속도 7.공격범위 8.인식범위
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1.5f, 1.7f);
+                break;
+            case EltieType.F2:
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+                break;
+            case EltieType.F3:
+                Attack3Animator = EweaponAttackPos.GetComponent<Animator>();
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+                break;
+
+
+            case EltieType.W1:
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 1.3f);
+                break;
+            case EltieType.W2:
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+                break;
+            case EltieType.W3:
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+                break;
+
+
+            case EltieType.E1:
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 1.3f);
+                break;
+            case EltieType.E2:
+                SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+                break;
+            case EltieType.E3:
+                SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
+                break;
+
+            default:
+                Debug.Log("엘리트 몬스터 생성 오류");
+                break;
         }
-        //물
-        else if (enemyData[0] == "W")
-        {
-            switch (int.Parse(enemyData[1]))
-            {
-                //1단계
-                case 1:
-                    //1.hp 2.원거리데미지 3.근접 데미지 4.공격딜레이 5.공격속도(총알) 6.이동속도 7.공격범위 8.인식범위
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 1.3f);
-                    break;
-                case 2:
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
-                    break;
-                case 3:
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
-                    break;
-            }
-        }
-        //흙
-        else if (enemyData[0] == "E")
-        {
-            switch (int.Parse(enemyData[1]))
-            {
-                //1단계
-                case 1:
-                    //1.hp 2.원거리데미지 3.근접 데미지 4.공격딜레이 5.공격속도(총알) 6.이동속도 7.공격범위 8.인식범위
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 1.3f);
-                    break;
-                case 2:
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
-                    break;
-                case 3:
-                    SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
-                    break;
-            }
-        }
+
+        #region 원래
+        //enemyOriData = gameObject.name.Split("(");
+        //enemyData = enemyOriData[0].Split("_");
+        ////불
+        //if (enemyData[0] == "F")
+        //{
+        //    //enemyType = false;
+        //    switch (int.Parse(enemyData[1]))
+        //    {
+        //        //1단계
+        //        case 1:
+        //            //1.hp 2.원거리데미지 3.근접 데미지 4.공격딜레이 5.공격속도(총알) 6.이동속도 7.공격범위 8.인식범위
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1.5f, 1.7f);
+        //            break;
+        //        case 2:
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+        //            break;
+        //        case 3:
+        //            Attack3Animator = EweaponAttackPos.GetComponent<Animator>();
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+        //            break;
+        //    }
+        //}
+        ////물
+        //else if (enemyData[0] == "W")
+        //{
+        //    switch (int.Parse(enemyData[1]))
+        //    {
+        //        //1단계
+        //        case 1:
+        //            //1.hp 2.원거리데미지 3.근접 데미지 4.공격딜레이 5.공격속도(총알) 6.이동속도 7.공격범위 8.인식범위
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 1.3f);
+        //            break;
+        //        case 2:
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+        //            break;
+        //        case 3:
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+        //            break;
+        //    }
+        //}
+        ////흙
+        //else if (enemyData[0] == "E")
+        //{
+        //    switch (int.Parse(enemyData[1]))
+        //    {
+        //        //1단계
+        //        case 1:
+        //            //1.hp 2.원거리데미지 3.근접 데미지 4.공격딜레이 5.공격속도(총알) 6.이동속도 7.공격범위 8.인식범위
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 1.3f);
+        //            break;
+        //        case 2:
+        //            SetEnemyStatus(10, 1, 0, 1f, 2f, 0.1f, 1f, 2f);
+        //            break;
+        //        case 3:
+        //            SetEnemyStatus(10, 1, 0, 1f, 5f, 0.1f, 1f, 2f);
+        //            break;
+        //    }
+        //}
+        #endregion
     }
     public void SetEnemyStatus(int _Hp, int _atkDmg, int _meleeDmg,float _atkDelay, float _atkSpeed, float _moveSpeed, float _atkRange, float _fieldOfVision)
     {
@@ -161,6 +210,10 @@ public class EliteMonster : MonoBehaviour
                 MoveToTarget();
             }
         }
+        else
+        {
+            EliteAnimator.SetBool("isMove", false);
+        }
     }
 
     #region  FaceTarget, flip 관련 필드
@@ -202,9 +255,10 @@ public class EliteMonster : MonoBehaviour
 
     private void FirstEliteAttack()
     {
-        //enemyAnimator.SetTrigger("isAttack");
+        EliteAnimator.SetBool("isMove", false);
+        EliteAnimator.SetTrigger("isAttack");
         GameObject bullet = Instantiate(EliteMonsterWeaponPrefab[0], EweaponAttackPos.transform.position, EweaponAttackPos.transform.rotation);
-        bullet.name = gameObject.name + "_" + atkDmg;
+        bullet.name = atkDmg.ToString();
         Rigidbody2D rb = bullet.gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = EweaponAttackPos.transform.right * atkSpeed;
     }
@@ -214,16 +268,16 @@ public class EliteMonster : MonoBehaviour
         //0.5 안이면 근접공격
         if(distance <= 0.5f)
         {
-            Debug.Log("2단계 근접공격");
-            Debug.Log(distance);
-            //enemyAnimator.SetTrigger("isAttack");
-            //enemyWeaponAnimator.SetTrigger("isAttack");
-            GameManager.Instance.HP -= atkDmg;
+            EliteAnimator.SetBool("isMove", false);
+            EliteAnimator.SetTrigger("isAttack");
+            GameManager.Instance.PlayerHit(atkDmg);
         }
         else
         {
+            EliteAnimator.SetBool("isMove", false);
+            EliteAnimator.SetTrigger("isAttack2");
             GameObject bullet = Instantiate(EliteMonsterWeaponPrefab[0], EweaponAttackPos.transform.position, EweaponAttackPos.transform.rotation);
-            bullet.name = gameObject.name + "_" + atkDmg;
+            bullet.name = atkDmg.ToString();
             Rigidbody2D rb = bullet.gameObject.GetComponent<Rigidbody2D>();
             rb.velocity = EweaponAttackPos.transform.right * atkSpeed;
         }
@@ -233,11 +287,9 @@ public class EliteMonster : MonoBehaviour
     {
         if (distance <= 0.7f)
         {
-            Debug.Log("3단계 근접공격");
-            Debug.Log(distance);
-            //enemyAnimator.SetTrigger("isAttack");
-            //enemyWeaponAnimator.SetTrigger("isAttack");
-            GameManager.Instance.HP -= atkDmg;
+            EliteAnimator.SetBool("isMove", false);
+            EliteAnimator.SetTrigger("isAttack");
+            GameManager.Instance.PlayerHit(atkDmg);
         }
         else
         {
@@ -279,9 +331,11 @@ public class EliteMonster : MonoBehaviour
     IEnumerator Water3Pattern()
     {
         isThirdAttack = true;
-        //W_3 스킬 공격 애니메이션 추가
-        for(int index = 0; index < 4; index++)
+        EliteAnimator.SetBool("isMove", false);
+        for (int index = 0; index < 4; index++)
         {
+            EliteAnimator.SetTrigger("isAttack2");
+            yield return new WaitForSeconds(0.6f);
             GameObject W3Attack = Instantiate(EliteMonsterWeaponPrefab[0], targetPosition.transform.position,
                     Quaternion.Euler(0, 0, 0));
             Water3PatternDestroy(W3Attack, 1.1f);
@@ -301,6 +355,7 @@ public class EliteMonster : MonoBehaviour
     #region Earth 3단계 필드
     IEnumerator Earth3PatternStart()
     {
+        EliteAnimator.SetBool("isMove", false);
         for (int index = 0; index < 3; index++)
         {
             StartCoroutine(Earth3Pattern());
@@ -316,10 +371,10 @@ public class EliteMonster : MonoBehaviour
     {
         isThirdAttack = true;
         AttackPosition();
-        //E_3 스킬 공격 애니메이션 추가
+        EliteAnimator.SetTrigger("isAttack2");
         GameObject E3AttackCheck = Instantiate(EliteMonsterWeaponPrefab[0], EweaponAttackPos.transform.position, Quaternion.Euler(0, 0, 0));
         Rigidbody2D rb = E3AttackCheck.gameObject.GetComponent<Rigidbody2D>();
-        rb.velocity = EweaponAttackPos.transform.right * 0.4f;
+        rb.velocity = EweaponAttackPos.transform.right * 0.6f;
         while (true)
         {
             if (E3AttackCheck == null)
@@ -327,8 +382,8 @@ public class EliteMonster : MonoBehaviour
                 break;
             }
             GameObject E3Attack = Instantiate(EliteMonsterWeaponPrefab[1], E3AttackCheck.transform.position, Quaternion.Euler(0, 0, 0));
-            Earth3PatternDestroy(E3Attack, 1f);
-            yield return new WaitForSeconds(0.4f);
+            Earth3PatternDestroy(E3Attack, 1.5f);
+            yield return new WaitForSeconds(0.2f);
         }
     }
     private void Earth3PatternDestroy(GameObject e3a, float time)
@@ -336,12 +391,11 @@ public class EliteMonster : MonoBehaviour
         SpriteRenderer e3aSR = e3a.GetComponent<SpriteRenderer>();
         if (EweaponAttackPos.transform.position.x - transform.position.x < 0)
         {
-            e3aSR.flipX = false;
+            e3aSR.flipX = true;
         }
-        // 타겟이 오른쪽에 있을 때
         else
         {
-            e3aSR.flipX = true;
+            e3aSR.flipX = false;
         }
         Destroy(e3a, time);
     }
@@ -359,7 +413,7 @@ public class EliteMonster : MonoBehaviour
     {
         Vector2 direction = targetPosition.transform.position - transform.position;
         transform.Translate(new Vector2(direction.x, direction.y) * moveSpeed * Time.deltaTime);
-        //enemyAnimator.SetBool("isMove", true);
+        EliteAnimator.SetBool("isMove", true);
     }
     #endregion
 
@@ -372,9 +426,10 @@ public class EliteMonster : MonoBehaviour
             if(enemyData[0] == "F")
             {
                 Attack3Animator.SetBool("isContact", true);
+                EliteAnimator.SetBool("isMove", false);
+                EliteRb.velocity = Vector2.zero;
                 EliteSR.enabled = true;
                 Invoke("PatternOut", 2f);
-                //EweaponAttackPos.transform.eulerAngles = EweaponAttackPos.transform.eulerAngles + Quaternion.Euler(0, 0, 180);
             }
         }
     }
@@ -389,7 +444,15 @@ public class EliteMonster : MonoBehaviour
         {
             ISkill playerSkill = col.GetComponent<ISkill>();
             HitfromPlayerSkill(playerSkill.skillDamage);
-            Destroy(col.gameObject);
+            string skillName = col.gameObject.name.Split("(")[0];
+            switch (skillName)
+            {
+                case "W_6":
+                    break;
+                default:
+                    Destroy(col.gameObject);
+                    break;
+            }
         }
     }
     #endregion
@@ -406,6 +469,7 @@ public class EliteMonster : MonoBehaviour
     public void HitfromPlayerSkill(int skillDamage)
     {
         EliteEnemyHp -=  skillDamage;
+        Debug.Log(skillDamage);
         if (EliteEnemyHp <= 0)
         {
             Die();
@@ -413,12 +477,12 @@ public class EliteMonster : MonoBehaviour
     }
     private void Die()
     {
-        //enemyAnimator.SetTrigger("die");            // die 애니메이션 실행
+        EliteAnimator.SetTrigger("isDie");            // die 애니메이션 실행
         GetComponent<EliteMonster>().enabled = false;
         GetComponent<Collider2D>().enabled = false; // 충돌체 비활성화
         StopAllCoroutines();
         Destroy(gameObject, 1);
-        GameManager.Instance.IncreaseAttribute();
+        GameManager.Instance.IncreaseAttribute(gameObject.name);
     }
 
     //플레이어 사망시

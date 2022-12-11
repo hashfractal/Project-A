@@ -33,12 +33,12 @@ public class FadeInOut : Singleton<FadeInOut>
         if(fadeChange_value > 1 || fadeChange_value < 0)
         {
             isFadeChanging = false;
-            Player.Instance.isMoveStatus = true;
+            //Player.Instance.isMoveStatus = true;
             
         }
         else
         {
-            Player.Instance.isMoveStatus = false;
+            //Player.Instance.isMoveStatus = false;
         }
     }
 }

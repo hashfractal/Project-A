@@ -5,8 +5,16 @@ using System.Drawing;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 
+public enum EnemyStage { Stage1 = 1, Stage2, Stage3 }
+public enum EnemyType { Stage1_D_1, Stage1_D_2, Stage1_M_1, Stage1_M_2,
+                        Stage2_Mush, Stage2_Fairy, Stage2_Rock, Stage2_Swallo, Stage2_Squirrel,
+                        Stage3_D_1, Stage3_D_2, Stage3_M_1, Stage3_M_2, Stage3_M_3}
+
 public class EnemyAI : MonoBehaviour
 {
+    public EnemyType type;
+    public EnemyStage stage;
+
     //OnDrawgizmo 때문에 사용 나중에 제거
     public GameObject EAttackRangePos;
 
@@ -26,10 +34,13 @@ public class EnemyAI : MonoBehaviour
     //공격 쿨타임
     float attackDelay;
 
-    float RayMaxDistance = 1f;
+    //추후 수정
+    //float RayMaxDistance = 1f;
 
     //true면 근접 false면 원거리 
     private bool enemyType;
+    //1Stage 적에게만 적용되는 불 값
+    private bool is1Stage;
     //적 피격시 애니메이션 적용 중인지 아닌지
     public bool attackedMove;
     //원거리 적 공격시 멈추기위해 사용하는 변수
@@ -47,57 +58,126 @@ public class EnemyAI : MonoBehaviour
 
     private void ClassificationEnemy()
     {
-        string[] enemyData = gameObject.name.Split("_");
-        enemy.EweaponAttackPos.transform.localPosition = new Vector2(0, 0);
         //1스테이지
-        if (int.Parse(enemyData[0]) == 1)
+        if ((int)stage == 1)
         {
-            //원거리
-            if(enemyData[1] == "D")
+            switch (type)
             {
-                //false 면 원거리 적
-                enemyType = false;
-                switch (int.Parse(enemyData[3]))
-                {
-                    case 1:
-                        //1.hp 2.데미지 3.공격딜레이 4.공격속도(총알) 5.이동속도 6.공격범위 7.인식범위
-                        enemy.SetEnemyStatus(10, 7, 1f, 5f, 1.2f, 1f, 1.3f);
-                        break;
-                    case 2:
-                        enemy.SetEnemyStatus(100, 7, 1f, 5f, 1.2f, 1f, 2f);
-                        break;
-                }
-            }
-            //근거리
-            else
-            {
-                enemyType = true;
-                switch (int.Parse(enemyData[3]))
-                {
-                    case 1:
-                        enemy.SetEnemyStatus(10, 7, 1f, 5f, 0.1f, 0, 1f);
-                        //근접일때만 두개 붙음
-                        OverlapBoxSize = new Vector2(0.2f, 0.2f);
-                        enemy.EAttackRangePos.transform.localPosition = new Vector2(0.4f, 0f);
-                        break;
-                    case 2:
-                        enemy.SetEnemyStatus(10, 7, 1f, 5f, 0f, 1f, 1.5f);
-                        OverlapBoxSize = new Vector2(0.25f, 0.4f);
-                        enemy.EAttackRangePos.transform.localPosition = new Vector2(0.46f, 0f);
-                        break;
-                }
+                case EnemyType.Stage1_D_1:
+                    enemyType = false;
+                    is1Stage = true;
+                    //1.hp 2.데미지 3.공격딜레이 4.공격속도(총알) 5.이동속도 6.공격범위 7.인식범위
+                    enemy.SetEnemyStatus(10, 7, 1f, 5f, 1.2f, 1f, 1.3f);
+                    break;
+                case EnemyType.Stage1_D_2:
+                    enemyType = false;
+                    is1Stage = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 5f, 1.2f, 1f, 2f);
+                    break;
+                case EnemyType.Stage1_M_1:
+                    enemyType = true;
+                    is1Stage = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 5f, 0.2f, 0, 1f);
+                    //근접일때만 두개 붙음
+                    OverlapBoxSize = new Vector2(0.8f, 0.8f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.4f, 0f);
+                    break;
+                case EnemyType.Stage1_M_2:
+                    enemyType = true;
+                    is1Stage = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 5f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.25f, 0.4f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.46f, 0f);
+                    break;
+                default:
+                    Debug.Log("일반적 생성 오류");
+                    break;
             }
         }
         //2스테이지
-        else if(int.Parse(enemyData[0]) == 2)
+        else if ((int)stage == 2)
         {
-
+            switch (type)
+            {
+                case EnemyType.Stage2_Mush:
+                    is1Stage = false;
+                    enemyType = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 0f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.25f, 0.4f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.46f, 0f);
+                    break;
+                case EnemyType.Stage2_Fairy:
+                    is1Stage = false;
+                    enemyType = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 0f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.25f, 0.4f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.46f, 0f);
+                    break;
+                case EnemyType.Stage2_Rock:
+                    is1Stage = false;
+                    enemyType = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 0f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.25f, 0.4f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.46f, 0f);
+                    break;
+                case EnemyType.Stage2_Swallo:
+                    is1Stage = false;
+                    enemyType = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 0f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.25f, 0.4f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.46f, 0f);
+                    break;
+                case EnemyType.Stage2_Squirrel:
+                    is1Stage = false;
+                    enemyType = false;
+                    enemy.SetEnemyStatus(10, 7, 1f, 2.5f, 1.2f, 1f, 2f);
+                    break;
+                default:
+                    Debug.Log("일반적 생성 오류");
+                    break;
+            }
         }
         //3스테이지
-        else if (int.Parse(enemyData[0]) == 3)
+        else if ((int)stage == 3)
         {
-
-        }
+            switch (type)
+            {
+                case EnemyType.Stage3_D_1:
+                    is1Stage = false;
+                    enemyType = false;
+                    enemy.SetEnemyStatus(10, 7, 1f, 2.5f, 1.2f, 1f, 2f);
+                    break;
+                case EnemyType.Stage3_D_2:
+                    is1Stage = false;
+                    enemyType = false;
+                    enemy.SetEnemyStatus(10, 7, 1f, 2.5f, 1.2f, 1f, 2f);
+                    break;
+                case EnemyType.Stage3_M_1:
+                    is1Stage = false;
+                    enemyType = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 0f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.2f, 0.2f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.4f, 0f);
+                    break;
+                case EnemyType.Stage3_M_2:
+                    is1Stage = false;
+                    enemyType = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 0f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.2f, 0.2f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.4f, 0f);
+                    break;
+                case EnemyType.Stage3_M_3:
+                    is1Stage = false;
+                    enemyType = true;
+                    enemy.SetEnemyStatus(10, 7, 1f, 0f, 0.2f, 1f, 1.5f);
+                    OverlapBoxSize = new Vector2(0.2f, 0.2f);
+                    enemy.EAttackRangePos.transform.localPosition = new Vector2(0.4f, 0f);
+                    break;
+                default:
+                    Debug.Log("일반적 생성 오류");
+                    break;
+            }
+        }       
     }
     void Start()
     {
@@ -115,6 +195,8 @@ public class EnemyAI : MonoBehaviour
         attackedMove = false;
         enemy = GetComponent<Enemy>();
         enemyAnimator = enemy.enemyAnimator;
+
+        is1Stage = false;
 
         ClassificationEnemy();
     }
@@ -297,7 +379,7 @@ public class EnemyAI : MonoBehaviour
     private void AttackTarget(float distance)
     {
         if (enemyType == true)
-        {
+        {            
             MeleeAttack();
         }
         else
@@ -321,12 +403,27 @@ public class EnemyAI : MonoBehaviour
     //근접 공격
     private void MeleeAttack()
     {
-        Collider2D hit = Physics2D.OverlapBox(enemy.EAttackRangePos.transform.position, OverlapBoxSize, enemy.EweaponAttackPosParent.transform.rotation.eulerAngles.z, LayerMask.GetMask("Player"));
+        Collider2D hit = Physics2D.OverlapBox(transform.position, OverlapBoxSize, 0f, LayerMask.GetMask("Player"));
+        //transform.position, OverlapBoxSize, enemy.EweaponAttackPosParent.transform.rotation.eulerAngles.z, LayerMask.GetMask("Player"));
         if (hit != null)
         {
-            enemyAnimator.SetTrigger("isAttack");
-            enemyWeaponAnimator.SetTrigger("isAttack");
-            GameManager.Instance.HP -= enemy.atkDmg;
+            isDAttacking = true;
+            if (is1Stage)
+            {
+                enemyAnimator.SetTrigger("isAttack");
+                enemyWeaponAnimator.SetTrigger("isAttack");
+                GameManager.Instance.PlayerHit(enemy.atkDmg);
+            }
+            else
+            {
+                enemyAnimator.SetTrigger("isAttack");
+                GameManager.Instance.PlayerHit(enemy.atkDmg);
+            }
+
+        }
+        else
+        {
+            isDAttacking = false;
         }
     }    
 
@@ -334,9 +431,12 @@ public class EnemyAI : MonoBehaviour
     private void DistanceAttack()
     {
         enemyAnimator.SetTrigger("isAttack");
-        enemyWeaponAnimator.SetTrigger("isAttack");
+        if (is1Stage)
+        {
+            enemyWeaponAnimator.SetTrigger("isAttack");
+        }
         GameObject bullet = Instantiate(testprefabBullet, enemy.EweaponAttackPos.transform.position, enemy.EweaponAttackPos.transform.rotation);
-        bullet.name = gameObject.name + "_" + enemy.atkDmg;
+        bullet.name = enemy.atkDmg.ToString();
         Rigidbody2D rb = bullet.gameObject.GetComponent<Rigidbody2D>();
         rb.velocity = enemy.EweaponAttackPos.transform.right * enemy.atkSpeed;
     }
@@ -345,7 +445,7 @@ public class EnemyAI : MonoBehaviour
     private void OnDrawGizmos()
     {
         Gizmos.color = UnityEngine.Color.red;
-        Gizmos.DrawWireCube(EAttackRangePos.transform.position, OverlapBoxSize);
+        Gizmos.DrawWireCube(transform.position, OverlapBoxSize);
     }
     #endregion
 

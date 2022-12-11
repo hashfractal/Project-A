@@ -5,10 +5,8 @@ using UnityEngine;
 public class CameraFollow : Singleton<CameraFollow>
 {
     //[Header("Player Camera")]
-    public GameObject player;        //Public variable to store a reference to the player game object
+    //public GameObject player;        //Public variable to store a reference to the player game object
     //private Vector3 offset;            //Private variable to store the offset distance between the player and camera
-
-
 
     [Header("Room Camera")]
     public Room currRoom;
@@ -24,7 +22,7 @@ public class CameraFollow : Singleton<CameraFollow>
 
     public void Update()
     {
-        //UpdatePosition();
+        UpdatePosition();
     }
     public void UpdatePosition()
     {
@@ -33,16 +31,16 @@ public class CameraFollow : Singleton<CameraFollow>
             return;
         }
 
-        Vector3 playerPosition = player.transform.position;
+        //Vector3 playerPosition = Player.self.transform.position;
 
         //Vector3 targetPos = new Vector3(playerPosition.x, cameraHeight, playerPosition.z - backSide);
 
         //transform.position = Vector3.MoveTowards(transform.position, targetPos, Time.deltaTime * moveSpeedWhenRoomChange);
         //transform.rotation = Quaternion.Euler(cameraAngle, transform.rotation.y, transform.rotation.z);
 
-        Vector3 FixedPos = new Vector3(playerPosition.x + offsetX, playerPosition.y + offsetY, playerPosition.z + offsetZ);
-        transform.rotation = Quaternion.Euler(cameraAngle, transform.rotation.y, transform.rotation.z);
-        transform.position = Vector3.Lerp(transform.position, FixedPos, Time.deltaTime * DelayTime);
+        //Vector3 FixedPos = new Vector3(playerPosition.x + offsetX, playerPosition.y + offsetY, playerPosition.z + offsetZ);
+        //transform.rotation = Quaternion.Euler(cameraAngle, transform.rotation.y, transform.rotation.z);
+        //transform.position = Vector3.Lerp(transform.position, FixedPos, Time.deltaTime * DelayTime);
 
     }
 

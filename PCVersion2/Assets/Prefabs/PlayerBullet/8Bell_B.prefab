@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6553188893625165720}
   - component: {fileID: 6553188893625165719}
   - component: {fileID: 6553188893625165718}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: 8Bell_B
   m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}

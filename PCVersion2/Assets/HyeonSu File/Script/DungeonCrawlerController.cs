@@ -70,6 +70,8 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 	public int maxRoomCnt       = 20;                       // 최대 방 갯수
 	public int currRoomCnt      = 0;                        // 현재 방 갯수
 	public int maxDistance      = 5;                        // 최대 거리 제한
+	public int eliteCount		= 0;
+	public int hiddenCount		= 0;
 
 	public int validRoomCount   = 0;       
 
@@ -115,12 +117,12 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 		}
 		FindRoomDistance(startRoomPosition, startRoomPosition);
 
-		AddRoomLIst();	////posArr 순회하여 validRoomList에 유효한 방을 삽입
+		AddRoomLIst();	//posArr 순회하여 validRoomList에 유효한 방을 삽입
 		SortRoomList(validRoomList);	//리스트를 방의 거리에 따라 오름차순으로 정렬함, 함수 구현부 주석 참고
 
 		// 특수방 BOSS 방 생성
 		AddBossRoom();
-
+		setUniqueRoom();
 		// 배열의 방들을 RoomController의 List로 변환
 		SetupPosition();
 
@@ -416,7 +418,7 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			if (directionsRand)
 			{
 
-				int selectPatten = (int)Choose(persent); //persent 인덱스 0~n 중 하나를 반환
+				int selectPatten = 6;//(int)Choose(persent); //persent 인덱스 0~n 중 하나를 반환
 
 				if (!PossiblePatten(start, collectPatten[direction][selectPatten])) //패턴이 가능한가
 					return;
@@ -436,25 +438,21 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 
 						posArr[move.y, move.x].isValidRoom              =  true;
 
-						int n;
-						string rroomname = "";
-						n = RoomRandomCount();
-                        switch (n)
-                        {
-							case 0:
-								rroomname = "Single";
-								break;
-							case 1:
-								rroomname = "Elite";
-								break;
-							case 2:
-								rroomname = "Hidden";
-								break;
-							default:
-                                break;
-                        }
+						//맵 종류 선택
+						string rroomname = "Single";
+						//switch (RoomRandomCount())
+						//{
+						//	case 1:
+						//		rroomname = "Elite";
+						//		break;
+						//	case 2:
+						//		rroomname = "Hidden";
+						//		break;
+						//	default:
+						//		break;
+						//}
 
-                        posArr[move.y, move.x].roomName                 = rroomname;
+						posArr[move.y, move.x].roomName                 = rroomname;
 						posArr[move.y, move.x].center_Position          = start + collectPatten[direction][selectPatten][i];
 						posArr[move.y, move.x].distance                 = -1;
 						printposarr();
@@ -495,13 +493,13 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 	}
 
 	int RoomRandomCount()
-    {
+	{
 		int a = Random.Range(0, 10);
 
 		if(a >= 0 & a <= 7)
-        {
+		{
 			return 0;
-        }
+		}
 		if (a == 8)
 		{
 			return 1;
@@ -510,7 +508,7 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 			return 2;
 		
 		
-    }
+	}
 	public bool RoomCountCheck()
 	{
 		return ((minRoomCnt <= currRoomCnt && currRoomCnt <= maxRoomCnt));
@@ -549,6 +547,34 @@ public class DungeonCrawlerController : Singleton<DungeonCrawlerController>
 		return temp;
 	}
 
+	private void setUniqueRoom()
+	{
+		for(int i = 0; i < eliteCount; i++)
+		{
+			int x = Random.Range(0, maxDistance * 2);
+			int y = Random.Range(0, maxDistance * 2);
+
+			if (posArr[x, y].roomName == "Single")
+			{
+				posArr[x, y].roomName = "Elite";
+			}
+			else
+				i--;
+		}
+
+		for (int i = 0; i < hiddenCount; i++)
+		{
+			int x = Random.Range(0, maxDistance * 2);
+			int y = Random.Range(0, maxDistance * 2);
+
+			if (posArr[x, y].roomName == "Single")
+			{
+				posArr[x, y].roomName = "Hidden";
+			}
+			else
+				i--;
+		}
+	}
 	private void printposarr()
 	{
 		string showposarr = "y↑, x→\n";

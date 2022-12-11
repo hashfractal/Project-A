@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 985843284645344319}
   - component: {fileID: 985843284645344318}
   - component: {fileID: 985843284645344305}
-  m_Layer: 0
+  m_Layer: 14
   m_Name: Arrow2_B
   m_TagString: PlayerWeapon
   m_Icon: {fileID: 0}

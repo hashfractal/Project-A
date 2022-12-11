@@ -15,6 +15,8 @@ public class RoomPrefabsSet : Singleton<RoomPrefabsSet>
         for (int i = 0; i < roomPrefabsName.Count; i++)
         {
             roomPrefabs.Add(roomPrefabsName[i], roomPrefabsList[i]);
-        }     
-    }   
+        }
+        
+    }
+    
 }

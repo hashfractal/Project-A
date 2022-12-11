@@ -11,13 +11,17 @@ public class ITEMMANAGER : MonoBehaviour
     private static ITEMMANAGER instance = null;
 
 
-    //추후에 싱근톤으로 전환
     public List<Dictionary<string, object>> data;    
 
     // 아이템 상태창
     [SerializeField] GameObject StateWindow;
     [SerializeField] GameObject WeaponCompareWindow;
     [SerializeField] GameObject CompareUI;
+
+    // 오브젝트 상호작용  UI
+
+    public TextMeshProUGUI ItemBoxText;
+    public TextMeshProUGUI TotemPointText;
 
     // 인벤토리 정보
     [SerializeField] GameObject ItemWindow;
@@ -93,6 +97,8 @@ public class ITEMMANAGER : MonoBehaviour
     public Sprite[] SkillUIPrefab;
     //UI에 표시되는 스킬 Image의 이름
     public string currentSkillName;
+    public string currentSkillFirstName;
+    public int currentSkillLevel;
     // 금 속성인지 아닌지 판별하기 위한 멤버(Player에서 사용)
     public string currentSkillisM;
     /// <summary>
@@ -140,7 +146,7 @@ public class ITEMMANAGER : MonoBehaviour
         // 인벤토리 비활성화
         ItemWindow.SetActive(false);
     }
-    // Update is called once per frame
+
     void Update()
     {
         TabInput();
@@ -247,6 +253,22 @@ public class ITEMMANAGER : MonoBehaviour
             StateWindow.transform.position = Camera.main.WorldToScreenPoint(obj.transform.position);
         }
     }
+
+    // 아이템 상자 가까이 가면 UI 출력
+    public void ShowItemBoxUI(GameObject obj)
+    {
+        ItemBoxText.gameObject.SetActive(true);
+        ItemBoxText.gameObject.transform.position = Camera.main.WorldToScreenPoint(obj.transform.localPosition + new Vector3(0, 0.3f, 0));
+    }
+
+    public void ShowTotemPointUI(GameObject obj, string msg)
+    {
+        TotemPointText.gameObject.SetActive(true);
+        TotemPointText.transform.position = Camera.main.WorldToScreenPoint(new Vector2(obj.transform.position.x, obj.transform.position.y + 0.5f));
+
+        TotemPointText.GetComponent<TextMeshProUGUI>().text = msg;
+    }
+
     #endregion
 
     #region 플레이어가 아이템에서 떨어지면 상태창 미출력
@@ -255,6 +277,8 @@ public class ITEMMANAGER : MonoBehaviour
         StateWindow.SetActive(false);
         CompareUI.SetActive(false);
         WeaponCompareWindow.SetActive(false);
+        ItemBoxText.gameObject.SetActive(false);
+        TotemPointText.gameObject.SetActive(false);
     }
     #endregion
 
@@ -485,6 +509,7 @@ public class ITEMMANAGER : MonoBehaviour
     private void ItemDropGo(int idx, GameObject Enemy)
     {
         GameObject DropItem = Instantiate(DropItemPrefab[idx], Enemy.transform.position, transform.rotation);
+        DropItem.name = DropItem.name.Split("(")[0];
         Rigidbody2D rb = DropItem.gameObject.GetComponent<Rigidbody2D>();
         int x = Random.Range(-1, 2);
         int y = Random.Range(-1, 2);
@@ -514,7 +539,7 @@ public class ITEMMANAGER : MonoBehaviour
     }
     #endregion
 
-    #region 인벤토리 출력
+    #region 인벤토리 출력 
     void TabInput()
     {
         if(Input.GetKeyDown(KeyCode.Tab))
@@ -528,58 +553,78 @@ public class ITEMMANAGER : MonoBehaviour
         }
     }
     #endregion
-
     //////////////////////////////////////////////////////////////////////////////////////
 
 
     //////////////////////////////////////////////////////////////////////////////////////
     #region 스킬 관리 필드
+    //오류 있음 수정 필요
     public void GetSkillInfomation(int F,int W,int E)
     {
-        //SkillImage.sprite = SkillUIPrefab[?]
-        if( F == W && W == E)
+        if (F == W && W == E)
         {
-            SetSkillInfomation(F,"M");
+            SetSkillInfomation(F, "M");
         }
-        else
+        else if (F == W || W == E || F == E)
         {
-            if (F == W && F > 0)
+            if(F == W)
             {
-                SetSkillInfomation(F, "FW");
-            }
-            else if(W == E && W > 0)
-            {
-                SetSkillInfomation(W, "WE");
-            }
-            else if(F == E && F > 0)
-            {
-                SetSkillInfomation(F, "FE");
-            }
-            else
-            {
-                if (F > W)
+                if (F > E)
                 {
-                    if(F > E)
-                    {
-                        SetSkillInfomation(F, "F");
-                    }
-                    else
-                    {
-                        SetSkillInfomation(E, "E");
-                    }
+                    SetSkillInfomation(F, "FW");
                 }
                 else
                 {
-                    if(W > E)
-                    {
-                        SetSkillInfomation(W, "W");
-                    }
-                    else
-                    {
-                        SetSkillInfomation(E, "E");
-                    }
-                    
+                    SetSkillInfomation(E, "E");
                 }
+            }
+            else if(F == E)
+            {
+                if (F > W)
+                {
+                    SetSkillInfomation(F, "FE");
+                }
+                else
+                {
+                    SetSkillInfomation(W, "W");
+                }
+            }
+            else if(W == E)
+            {
+                if (W > F)
+                {
+                    SetSkillInfomation(W, "WE");
+                }
+                else
+                {
+                    SetSkillInfomation(F, "F");
+                }
+            }
+        }
+        else
+        {
+            if (F > W)
+            {
+                if (F > E)
+                {
+                    SetSkillInfomation(F, "F");
+                }
+                else
+                {
+                    SetSkillInfomation(E, "E");
+                }
+            }
+            else
+            {
+                if (W > E)
+                {
+                    SetSkillInfomation(W, "W");
+                }
+                else
+                {
+                    SetSkillInfomation(E, "E");
+                }
+
             }
         }
     }
@@ -587,16 +632,16 @@ public class ITEMMANAGER : MonoBehaviour
     private void SetSkillInfomation(int level,string skillType)
     {
         //1.F 2.W 3.E 4.FE 5.WE 6.FW 7.None
-
+        currentSkillFirstName = skillType;
+        currentSkillLevel = level;
         currentSkillName = skillType +"_" + level.ToString();
         for (int i = 0; i < SkillUIPrefab.Length; i++)
         {
-            //Debug.Log(spriteName[0]);
             if (currentSkillName == SkillUIPrefab[i].name.Split("(")[0])
             {
                 currentSkillisM = currentSkillName.Split("_")[0];
                 SkillImage.sprite = SkillUIPrefab[i];
-
+                break;
             }
         }
 

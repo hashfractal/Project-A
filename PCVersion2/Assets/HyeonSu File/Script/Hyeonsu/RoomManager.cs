@@ -15,14 +15,21 @@ public class RoomManager : MonoBehaviour
 
     public GameObject TreasureBox;
     public bool BoxCheck = true;
+    public bool DoorCheck = true;
 
     public int Limit = 0;
+
+    public GameObject PlayerState;
+    public GameObject Slot;
+    public GameObject JoyStickUi;
+    public GameObject Player;
 
     public GameObject CutScenes;
     public Image _CutScene;
     public GameObject _CutScene2;
     public GameObject _CutScenePlayer;
     public GameObject _CutSceneBoss;
+    public GameObject _BossRoom;
 
     public bool EndCutScene = false;
     public bool BossCheck = false;
@@ -38,48 +45,57 @@ public class RoomManager : MonoBehaviour
 
     private void Start()
     {
-        Rc.CreatedRoom();
-    }
+       GameManager.Instance.Boss1Pos = _BossRoom;
+       _BossRoom.SetActive(false);
+
+		//Rc.CreatedRoom();
+		StartCoroutine(CheckRoomController());
+	}
+
     // Update is called once per frame
     void Update()
     {
-        Room room = GameObject.Find(Roomname).GetComponent<Room>();
-        
-        Roomname2 = room.roomName;
+        if(Roomname != null && Roomname != "")
+        {
+			Room room = GameObject.Find(Roomname).GetComponent<Room>();
 
-        if(Roomname2 == "Single")
-        {
-            CloseDoor();
-            SingleRoom();
-        }
-        if(Roomname2 == "Elite")
-        {
-            CloseDoor();
-            EliteRoom();
-        }
-        if(Roomname2 == "Hidden")
-        {
-            CloseDoor();
-            HiddenRoom();
-        }
-        if(Roomname2 == "Boss")
-        {
-            CloseDoor();
-            BossRoom();
-        }
+			Roomname2 = room.roomName;
+
+			if (Roomname2 == "Single")
+			{
+				SingleRoom();
+			}
+			else if (Roomname2 == "Elite")
+			{
+				EliteRoom();
+			}
+			else if (Roomname2 == "Hidden")
+			{
+				HiddenRoom();
+			}
+			else if (Roomname2 == "Boss")
+			{
+				BossRoom();
+			}
+		}
     }
-    void CloseDoor()
+
+	IEnumerator CheckRoomController()
+	{
+		yield return new WaitForSeconds(0.1f);
+		Rc.CreatedRoom();
+	}
+
+	void CloseDoor()
     {
-        for (int i = 0; i < Doors.Count - 1; i++)
-        {
-            Doors[i].isTrigger = false;
-        }
+        DoorCheck = false;
     }
+
     void OpenDoor(string tag)
     {
         if (tag == "EliteMonster")
         {
-            if(GameObject.FindWithTag(tag) != null)
+            if (GameObject.FindWithTag(tag) != null)
             {
                 CloseDoor();
             }
@@ -88,21 +104,23 @@ public class RoomManager : MonoBehaviour
                 OpenDoor();
             }
         }
-        else if (GameObject.FindWithTag(tag) == null)
+
+        if(tag == "Enemy")
         {
-            for (int i = 0; i < Doors.Count - 1; i++)
+            if (GameObject.FindWithTag(tag) != null)
             {
-                Doors[i].isTrigger = true;
+                CloseDoor();
+            }
+            else
+            {
+                OpenDoor();
             }
         }
     }
 
     void OpenDoor()
     {
-        for (int i = 0; i < Doors.Count - 1; i++)
-        {
-            Doors[i].isTrigger = true;
-        }
+        DoorCheck = true;
     }
     void SetLimit()
     {
@@ -119,6 +137,8 @@ public class RoomManager : MonoBehaviour
     }
     void SingleRoom()
     {
+        CloseDoor();
+
         GameObject.Find(Roomname).transform.Find("Monsters").gameObject.SetActive(true);
 
         OpenDoor("Enemy");
@@ -126,13 +146,15 @@ public class RoomManager : MonoBehaviour
 
     void EliteRoom()
     {
-        //GameObject.Find(Roomname).transform.Find("Elite").gameObject.SetActive(true);
+        CloseDoor();
 
         OpenDoor("EliteMonster");
     }
 
     void HiddenRoom()
     {
+        CloseDoor();
+
         if (GameObject.Find("Treasure") == null)
         {
             OpenDoor();
@@ -147,16 +169,23 @@ public class RoomManager : MonoBehaviour
     
     void BossRoom()
     {
-        Player.Instance.isMoveStatus = false;
+        CloseDoor();
 
         if (EndCutScene && GameObject.FindWithTag("Boss") == null && BossCheck)
         {
+            Time.timeScale = 0;
             ClearUI.SetActive(true);
         }
 
         if (_CutScene.color.a >= 1.0f)
         {
             StartCoroutine(CutScene());
+
+            if (Limit == 0)
+            {
+                _BossRoom.SetActive(true);
+                Player.transform.position = new Vector3(60, -5, 0);
+            }
         }
 
         _CutScene.gameObject.SetActive(true);
@@ -165,11 +194,9 @@ public class RoomManager : MonoBehaviour
         if (EndCutScene)
         {
             CutScenes.SetActive(false);
-            Player.Instance.isMoveStatus = true;
             if (Limit == 0)
-            {
-                GameManager.Instance.Boss1Pos = GameObject.Find(Roomname);
-                Instantiate(Boss, GameObject.Find(Roomname).transform.position, Quaternion.identity);
+            { 
+                Instantiate(Boss, GameManager.Instance.Boss1Pos.transform.position, Quaternion.identity);
                 EndCutScene = false; 
             }
             SetLimit();

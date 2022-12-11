@@ -75,7 +75,15 @@ public class Enemy : MonoBehaviour
         {
             ISkill playerSkill = col.GetComponent<ISkill>();
             HitfromPlayerSkill(playerSkill.skillDamage);
-            Destroy(col.gameObject);
+            string skillName = col.gameObject.name.Split("(")[0];
+            switch (skillName)
+            {
+                case "W_6":
+                    break;
+                default:
+                    Destroy(col.gameObject);
+                    break;
+            }
         }
     }
     #endregion
@@ -84,20 +92,26 @@ public class Enemy : MonoBehaviour
     public void HitfromPlayerSkill(int skillDamage)
     {
         enemyHp -= skillDamage;
-        StartCoroutine(AttackedOut());
         if (enemyHp <= 0)
         {
-            Die();
+            StartCoroutine(Die());
+        }
+        else
+        {
+            StartCoroutine(AttackedOut());
         }
     }
 
     public void HitfromPlayer()
     {
         enemyHp -= GameManager.Instance.HitDamage;
-        StartCoroutine(AttackedOut());
         if (enemyHp <= 0)
         { 
-            Die();
+            StartCoroutine(Die());
+        }
+        else
+        {
+            StartCoroutine(AttackedOut());
         }
     }
     IEnumerator AttackedOut()
@@ -116,14 +130,22 @@ public class Enemy : MonoBehaviour
         //rb.AddForce(dir * GameManager.Instance.knockback, ForceMode2D.Impulse);
     }
 
-    void Die()
+    IEnumerator Die()
     {
-        EweaponAttakPosSR.enabled = false; 
         this.enemyAnimator.SetTrigger("isDie");            // die 애니메이션 실행
+        enemyAI.attackedMove = true;
+        Vector2 dir = targetPosition.transform.position - transform.position;
+        rb.AddForce(-dir * GameManager.Instance.knockback, ForceMode2D.Impulse);
+        yield return new WaitForSeconds(0.3f);
+        rb.velocity = new Vector2(0, 0);
+
+        EweaponAttakPosSR.enabled = false; 
+
         GetComponent<EnemyAI>().enabled = false;
         GetComponent<Collider2D>().enabled = false; // 충돌체 비활성화
         ITEMMANAGER.Instance.ItemDrop(gameObject);
-        Destroy(gameObject, 2);                    
+        Destroy(gameObject, 2);            
+        StopAllCoroutines();
     }
     #endregion
 

@@ -16,12 +16,6 @@ public class F_1 : MonoBehaviour, ISkill
         rb = GetComponent<Rigidbody2D>();
         UseSkill();
     }
-
-    void Update()
-    {
-        
-    }
-
     private void UseSkill()
     {
         rb.velocity = transform.right * F_1_SkillSpeed;

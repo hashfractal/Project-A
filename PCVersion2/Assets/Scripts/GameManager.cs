@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 using TMPro;
+using Unity.Burst.CompilerServices;
 
 public class GameManager : MonoBehaviour
 {
@@ -18,6 +19,11 @@ public class GameManager : MonoBehaviour
 
     public TextMeshProUGUI MugWortCountText;
     public TextMeshProUGUI GarlicCountText;
+    public TextMeshProUGUI CoinCountText;
+
+    public TextMeshProUGUI FireStatText;
+    public TextMeshProUGUI WaterStatText;
+    public TextMeshProUGUI EarthStatText;
 
     // 일시 정지 메뉴 출력
     //
@@ -45,8 +51,16 @@ public class GameManager : MonoBehaviour
     //////////////////////////////
     //Player Data
     //플레이어 스탯
-    public int HP;
-    public int AP = 0;
+    [SerializeField]
+    private GameObject Player;
+    [SerializeField]
+    private SpriteRenderer PlayerSR;
+    [SerializeField]
+    private Material flashMaterial;
+    private Material originalMaterial;
+
+    public float HP;
+    public int AP;
     //플레이어의  기본 공격력
     public int PlayerPower;
     //플레이어의 이동 속도
@@ -55,6 +69,8 @@ public class GameManager : MonoBehaviour
     public float PlayerCoolTime;
     //플레이어의 공격 속도(bulletspeed)
     public float PlayerBulletSpeed;
+    //플레이어의 스킬 쿨타임
+    public float PlayerSkillCoolTime;
     //플레이어의 최대 체력
     public int MaxHP = 100;     
     //플레이어의 총 공격력
@@ -87,6 +103,20 @@ public class GameManager : MonoBehaviour
 
     //
 
+    [Header("마을 관련 변수")]
+    #region 마을 관리
+    public bool ShopPointIn;
+    public bool TutorialPointIn;
+    public bool DoorPointIn;
+
+    public TextMeshProUGUI ShopNpcText;
+    public TextMeshProUGUI TutoNpcText;
+    public TextMeshProUGUI DoorNpcText;
+
+    public GameObject ShopPanel;
+    public GameObject TutorialPanel;
+    #endregion
+
     #region 인스턴스 설정 필드
     public static GameManager Instance
     {
@@ -106,6 +136,9 @@ public class GameManager : MonoBehaviour
         {
             instance = this;
         }
+
+        //test
+        CoinCount = 50;
     }
     #endregion
 
@@ -114,11 +147,14 @@ public class GameManager : MonoBehaviour
         QualitySettings.vSyncCount = 0;
         Application.targetFrameRate = 60;
 
+        originalMaterial = PlayerSR.material;
         HP = 50;
+        AP = 1;
         checkSlot = true;
         PlayerMoveSpeed = 100f;
         PlayerCoolTime = 1f;
         PlayerBulletSpeed = 5f;
+        PlayerSkillCoolTime = 2f;
         PlayerPower = 10;
         slot1WeaponItemPower = 0;
         slot2WeaponItemPower = 0;
@@ -129,12 +165,15 @@ public class GameManager : MonoBehaviour
 
         PauseMenu.SetActive(false);
         Time.timeScale = 1;
+
+
     }
 
     void Update()
     {
         MugWortCountText.text = MugwortCount.ToString() + "개";
         GarlicCountText.text = GarlicCount.ToString() + "개";
+        CoinCountText.text = CoinCount.ToString();
 
         AP = ArmorItem;
         //슬롯 1번일때
@@ -189,11 +228,9 @@ public class GameManager : MonoBehaviour
         {
             AP = 0;
         }
-        //PlayerPw.text = "Power : " + HitDamage.ToString();
-
         if (HP < MaxHP)
         {
-            HpAmount.fillAmount = (float)HP / (float)MaxHP;
+            HpAmount.fillAmount = HP / (float)MaxHP;
         }
         else
         {
@@ -202,12 +239,50 @@ public class GameManager : MonoBehaviour
     }
     #endregion
 
-    #region 속성 관리 필드
-    public void IncreaseAttribute()
+    #region 플레이어 피격 이벤트
+    public void PlayerHit(int damage)
     {
-        if(totemAtribute == "Fire")
+        StartCoroutine(PlayerHitSuper());
+        HP -= damage * (1 - (AP/100));
+    }
+
+    IEnumerator PlayerHitSuper()
+    {
+        int hitTime = 0;
+        Player.gameObject.layer = 11;
+        while(hitTime < 10)
         {
-            FireAttribute += currentTotemLevel;
+            if(hitTime%2 == 0)
+            {
+                PlayerSR.material = originalMaterial;
+                PlayerSR.color = new Color32(255, 255, 255, 90);
+            }
+            else
+            {
+                PlayerSR.material = flashMaterial;
+                PlayerSR.color = new Color32(255, 255, 255, 180);
+            }
+            yield return new WaitForSeconds(0.2f);
+            hitTime++;
+        }
+        PlayerSR.material = originalMaterial;
+        Player.gameObject.layer = 6;
+        PlayerSR.color = new Color32(255, 255, 255, 255);
+
+        yield return null;
+    }
+    #endregion
+
+    #region 속성 관리 필드
+    public void IncreaseAttribute(string elitName)
+    {
+        string orgName = elitName.Split("(")[0];
+        string[] eliteRealName = orgName.Split("_");
+        if (eliteRealName[0] == "F")
+        {
+            FireAttribute += int.Parse(eliteRealName[1]);
+            // 텍스트에 표시
+            FireStatText.text = FireAttribute.ToString();
             if (FireAttribute == WaterAttribute && WaterAttribute == EarthAttribute)
             {
                 ApplyAttribute(0,1);
@@ -217,9 +292,11 @@ public class GameManager : MonoBehaviour
                 ApplyAttribute(1, 0);
             }
         }
-        else if(totemAtribute == "Water")
+        else if(eliteRealName[0] == "W")
         {
-            WaterAttribute += currentTotemLevel;
+            WaterAttribute += int.Parse(eliteRealName[1]);
+            // 텍스트에 표시
+            WaterStatText.text = WaterAttribute.ToString();
             if (FireAttribute == WaterAttribute && WaterAttribute == EarthAttribute)
             {
                 ApplyAttribute(0,2);
@@ -229,9 +306,11 @@ public class GameManager : MonoBehaviour
                 ApplyAttribute(2, 0);
             }
         }
-        else if(totemAtribute == "Earth")
+        else if(eliteRealName[0] == "E")
         {
-            EarthAttribute += currentTotemLevel;
+            EarthAttribute += int.Parse(eliteRealName[1]);
+            // 텍스트에 표시
+            EarthStatText.text = EarthAttribute.ToString();
             if (FireAttribute == WaterAttribute && WaterAttribute == EarthAttribute)
             {
                 ApplyAttribute(0,3);
@@ -257,6 +336,7 @@ public class GameManager : MonoBehaviour
                 PlayerMoveSpeed += WaterAttribute * 2;
                 PlayerCoolTime -= 0.1f;
                 PlayerBulletSpeed += 0.5f;
+                PlayerSkillCoolTime -= 0.1f;
             }
             else if(plusat == 3)
             {
@@ -267,6 +347,7 @@ public class GameManager : MonoBehaviour
             PlayerMoveSpeed += WaterAttribute * 2;
             PlayerCoolTime -= 0.1f;
             PlayerBulletSpeed += 0.5f;
+            PlayerSkillCoolTime -= 0.1f;
             MaxHP += EarthAttribute * 7;
             AP += 5;
         }
@@ -276,7 +357,7 @@ public class GameManager : MonoBehaviour
         }
         else if(allat == 2)
         {
-            PlayerMoveSpeed += WaterAttribute * 2;
+            PlayerMoveSpeed += WaterAttribute * 4;
             PlayerCoolTime -= 0.1f;
             PlayerBulletSpeed += 0.5f;
         }
@@ -296,6 +377,87 @@ public class GameManager : MonoBehaviour
         if(PlayerDieEvent != null)
         {
             PlayerDieEvent();
+        }
+    }
+    #endregion
+
+    #region 마을 관리 필드
+    public void CloseShopPanel()
+    {
+        ShopPanel.SetActive(false);
+    }
+
+    public void CloseTutoPanel()
+    {
+        TutorialPanel.SetActive(false);
+    }
+
+    public void FireBuyButton()
+    {
+        if (CoinCount >= 5)
+        {
+            CoinCount -= 5;
+
+            FireAttribute += 1;
+            FireStatText.text = FireAttribute.ToString();
+            if (FireAttribute == WaterAttribute && WaterAttribute == EarthAttribute)
+            {
+                ApplyAttribute(0, 1);
+            }
+            else
+            {
+                ApplyAttribute(1, 0);
+            }
+        }
+        else
+        {
+            Debug.Log("코인이 부족해요!");
+        }
+    }
+
+    public void WaterBuyButton()
+    {
+        if (CoinCount >= 5)
+        {
+            CoinCount -= 5;
+
+            WaterAttribute += 1;
+            WaterStatText.text = WaterAttribute.ToString();
+            if (FireAttribute == WaterAttribute && WaterAttribute == EarthAttribute)
+            {
+                ApplyAttribute(0, 2);
+            }
+            else
+            {
+                ApplyAttribute(2, 0);
+            }
+        }
+        else
+        {
+            Debug.Log("코인이 부족해요!");
+        }
+    }
+
+    public void EarthBuyButton()
+    {
+        if (CoinCount >= 5)
+        {
+            CoinCount -= 5;
+
+            EarthAttribute += 1;
+            EarthStatText.text = EarthAttribute.ToString();
+            if (FireAttribute == WaterAttribute && WaterAttribute == EarthAttribute)
+            {
+                ApplyAttribute(0, 3);
+            }
+            else
+            {
+                ApplyAttribute(3, 0);
+            }
+        }
+        else
+        {
+            Debug.Log("코인이 부족해요!");
         }
     }
     #endregion

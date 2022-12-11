@@ -44,6 +44,7 @@ public class ItemBox : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             isPlayerEnter = true;
+            ITEMMANAGER.Instance.ShowItemBoxUI(gameObject);
         }
     }
 
@@ -52,6 +53,7 @@ public class ItemBox : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             isPlayerEnter = false;
+            ITEMMANAGER.Instance.CloseStateWindow();
         }
     }
 }

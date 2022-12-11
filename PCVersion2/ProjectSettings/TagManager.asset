@@ -20,6 +20,7 @@ TagManager:
   - Wall
   - EliteWeapon
   - EliteWeaponCheck
+  - Boss2
   layers:
   - Default
   - TransparentFX
@@ -33,9 +34,9 @@ TagManager:
   - Wall
   - Obstacle
   - SuperMan
-  - 
-  - 
-  - 
+  - MiniMap
+  - Boss
+  - PlayerBullet
   - 
   - 
   - 
