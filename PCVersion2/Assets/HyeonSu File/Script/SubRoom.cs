@@ -209,7 +209,7 @@ public class SubRoom : MonoBehaviour
                             {
 								try
 								{
-                                    GameObject roomDoor = Instantiate(leftRoom.prefabsDoor, leftDoor.transform);
+                                    GameObject roomDoor = Instantiate(leftRoom.prefabsDoor_left_270, leftDoor.transform);
                                     roomDoor.gameObject.transform.SetParent(leftDoor.gameObject.transform);
                                     leftDoor.setNextRoom(leftRoom.gameObject);
                                     leftDoor.SideDoor = leftRoom.childRooms.rightDoor;
@@ -228,7 +228,7 @@ public class SubRoom : MonoBehaviour
                     {
                         if (!leftWall.isUpdate)
                         {
-                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall.gameObject;
+                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall_left_270.gameObject;
                             GameObject roomWall = Instantiate(newWall, leftWall.transform);
                             leftWall.isUpdate = true;
                         }
@@ -258,7 +258,7 @@ public class SubRoom : MonoBehaviour
                             {
 								try
 								{
-                                    GameObject roomDoor = Instantiate(topRoom.prefabsDoor, topDoor.transform);
+                                    GameObject roomDoor = Instantiate(topRoom.prefabsDoor_top_180, topDoor.transform);
                                     roomDoor.gameObject.transform.SetParent(topDoor.gameObject.transform);
                                     topDoor.setNextRoom(topRoom.gameObject);
                                     topDoor.SideDoor = topRoom.childRooms.bottomDoor;
@@ -278,7 +278,7 @@ public class SubRoom : MonoBehaviour
                     {
                         if (!topWall.isUpdate)
                         {
-                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall.gameObject;
+                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall_top_180.gameObject;
                             GameObject roomWall = Instantiate(newWall, topWall.transform);
                             topWall.isUpdate = true;
                         }
@@ -305,7 +305,7 @@ public class SubRoom : MonoBehaviour
                             wallStr += "Rright";
                             if (!rightDoor.isUpdate)
                             {
-                                GameObject roomDoor = Instantiate(rightRoom.prefabsDoor, rightDoor.transform);
+                                GameObject roomDoor = Instantiate(rightRoom.prefabsDoor_right_90, rightDoor.transform);
                                 roomDoor.gameObject.transform.SetParent(rightDoor.gameObject.transform);
 
                                 rightDoor.setNextRoom(rightRoom.gameObject);
@@ -319,7 +319,7 @@ public class SubRoom : MonoBehaviour
                     {
                         if (!rightWall.isUpdate)
                         {
-                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall.gameObject;
+                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall_right_90.gameObject;
                             GameObject roomWall = Instantiate(newWall, rightWall.transform);
                             rightWall.isUpdate = true;
                         }
@@ -348,7 +348,7 @@ public class SubRoom : MonoBehaviour
                             wallStr += "Bottom";
                             if (!bottomDoor.isUpdate)
                             {
-                                GameObject roomDoor = Instantiate(bottomRoom.prefabsDoor, bottomDoor.transform);
+                                GameObject roomDoor = Instantiate(bottomRoom.prefabsDoor_bottom_0, bottomDoor.transform);
                                 roomDoor.gameObject.transform.SetParent(bottomDoor.gameObject.transform);
 
                                 bottomDoor.setNextRoom(bottomRoom.gameObject);
@@ -363,7 +363,7 @@ public class SubRoom : MonoBehaviour
 
                         if (!bottomWall.isUpdate)
                         {
-                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall.gameObject;
+                            GameObject newWall = transform.parent.GetComponent<Room>().prefabsWall_bottom_0.gameObject;
                             GameObject roomWall = Instantiate(newWall, bottomWall.transform);
                             bottomWall.isUpdate = true;
                         }
