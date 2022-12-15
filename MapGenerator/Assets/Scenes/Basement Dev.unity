@@ -350,6 +350,7 @@ MonoBehaviour:
   DefaultBackground: {fileID: 2100000, guid: 931042b1f325a70469e870b841d832d2, type: 2}
   VisitedBack: {fileID: 2100000, guid: d1ca8ec6116fd864a87b8a94a429bf66, type: 2}
   currMaterial: {fileID: 2100000, guid: 429d11c6ae9df244281d55bdf9b9ed33, type: 2}
+  Player: {fileID: 1496251172}
   isLoadingRoom: 0
 --- !u!4 &271386819
 Transform:
@@ -1209,15 +1210,15 @@ MonoBehaviour:
   - Single3
   - Boss1
   roomPrefabsList:
-  - {fileID: 2921295173739769028, guid: abd7565400f64b244b5baa7d724d06d5, type: 3}
-  - {fileID: 6019268754802865015, guid: 9e7941d94807c334b9510f0d1b96808c, type: 3}
-  - {fileID: 2921295173739769028, guid: 3f8d11f926331cc47bb92ac4e7d8ef33, type: 3}
-  - {fileID: 2921295173739769028, guid: 60f380f760499a7418822b349204fe89, type: 3}
-  - {fileID: 2921295173739769028, guid: aa42d2430ca9c7241886870f5b15e7d1, type: 3}
-  - {fileID: 2921295173739769028, guid: 04e53512055fe834eae9ede392fb72bb, type: 3}
-  - {fileID: 2921295173739769028, guid: 4d0f4d025433a794396c2783e7382d43, type: 3}
-  - {fileID: 2921295173739769028, guid: f71ea47cdebc8904791a901e5bd0041e, type: 3}
-  - {fileID: 6019268754802865015, guid: 5cf632379f2c7aa4e976bfca16c14f77, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
+  - {fileID: 2921295173739769028, guid: 3d7b050c694a8d940bf4d85ac85efe3a, type: 3}
 --- !u!850595691 &1775536336
 LightingSettings:
   m_ObjectHideFlags: 0

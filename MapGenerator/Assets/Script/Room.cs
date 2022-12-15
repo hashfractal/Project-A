@@ -21,11 +21,18 @@ public class Room : MonoBehaviour
 
     public bool isUpdatedWalls = false;
     public bool isVisitedRoom = false;
-    public GameObject prefabsDoor;
-    public GameObject prefabsWall;
+    public GameObject prefabsDoor_bottom_0;
+	public GameObject prefabsDoor_right_90;
+	public GameObject prefabsDoor_top_180;
+	public GameObject prefabsDoor_left_270;
+
+	public GameObject prefabsWall_bottom_0;
+	public GameObject prefabsWall_right_90;
+	public GameObject prefabsWall_top_180;
+	public GameObject prefabsWall_left_270;
 
 
-    public Room(int x, int y, int z)
+	public Room(int x, int y, int z)
     {
         center_Position.x = x;
         center_Position.y = y;

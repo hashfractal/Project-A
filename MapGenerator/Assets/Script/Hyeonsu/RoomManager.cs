@@ -20,11 +20,11 @@ public class RoomManager : MonoBehaviour
 
         if(Roomname2 == "Single")
         {
-            for (int i = 0; i < Doors.Count - 1; i++)
-            {
-                Doors[i].isTrigger = false;
-            }
-            SingleRoom();
+            //for (int i = 0; i < Doors.Count - 1; i++)
+            //{
+            //    Doors[i].isTrigger = false;
+            //}
+            //SingleRoom();
         }
         if(Roomname2 == "Elite")
         {

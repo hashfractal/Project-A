@@ -30,7 +30,7 @@ public class RoomController : Singleton<RoomController>
 		
 		loadedRooms.Clear();
 
-		Player.Instance.transform.position = new Vector3(0, 0.5f, 0) ;
+		Player.transform.position = new Vector3(0, 0.5f, 0) ;
 		DungeonCrawlerController.Instance.CreatedRoom();
 		SetRoomPath();
 	}
